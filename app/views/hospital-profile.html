@@ -1,0 +1,41 @@
+<div>
+  <div class="panel panel-default login-panel">
+    <div class="panel-heading text-center" style="background-color: #7986bc; color: white "><h4>Hospital Name</h4></div>
+
+
+
+    <div class="panel-body">
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Name </span>
+        <input class="form-control" value="{{hosPro.currentUser.name}}">
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Registration Number </span>
+        <input class="form-control" value="{{hosPro.currentUser.reg_number}}" disabled>
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Hospital Address </span>
+        <input class="form-control" value="{{hosPro.currentUser.address}}">
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Hospital State </span>
+        <input class="form-control" value="{{hosPro.currentUser.state}}" disabled>
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Hospital City </span>
+        <input class="form-control" value="{{hosPro.currentUser.city}}" disabled>
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Phone Number </span>
+        <input class="form-control" value="{{hosPro.currentUser.phone_number}}">
+      </div>
+
+      <div style="float: right">
+        <button class="btn btn-primary" >Update</button>
+        <button class="btn btn-default" >Cancel</button>
+      </div>
+    </div>
+
+
+  </div>
+</div>

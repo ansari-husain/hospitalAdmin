@@ -1,0 +1,22 @@
+<div>
+  <div class="panel panel-default login-panel">
+    <div class="panel-heading text-center" style="background-color: #7986bc; color: white "><h4>Login</h4></div>
+    <form name="loginForm">
+      <div class="panel-body">
+        <div class="input-group m-b-10">
+          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-user"> </i></span>
+          <input type="text" class="form-control" ng-model="login.user.username" placeholder="User Name"
+                 style="margin: auto">
+        </div>
+        <div class="input-group m-b-10">
+          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-lock"></i></span>
+          <input type="password" class="form-control" ng-model="login.user.password" placeholder="Password">
+        </div>
+        <div style="float: right">
+          <button class="btn btn-primary" ng-click="login.fnLogin()">Login</button>
+          <button class="btn btn-default" ng-click="login.fnCancelLogin()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
