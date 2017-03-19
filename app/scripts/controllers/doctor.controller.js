@@ -1,6 +1,6 @@
 'use strict';
 angular.module('hospitaladminApp')
-        .controller('DoctorCtrl',function(Auth, DoctorService, $timeout){
+        .controller('DoctorCtrl',function(Auth, DoctorService, $timeout, DataService){
 
     var vm = this;
     vm.isAdmin = Auth.isAdmin;

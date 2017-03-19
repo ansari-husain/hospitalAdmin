@@ -1,4 +1,4 @@
-<div >
+<div ng-init="updateLocation.fnInitUpdateLocation()">
   <h1 class="text-center"> Update Location </h1>
   <div class="container jumbotron">
     <select class="input-sm"
@@ -12,16 +12,16 @@
     <div style="margin-top: 15px">
       <select class="input-sm"
               ng-if="updateLocation.selectedOption == 'district' || updateLocation.selectedOption == 'city'"
-              ng-model="updateLocation.selectState">
+              ng-model="updateLocation.selectState" ng-change="updateLocation.getCities(updateLocation.selectState)">
         <option value="" selected> Select State</option>
-        <option value="gujarat"> Gujarat </option>
+        <option ng-repeat="state in updateLocation.statesArr" value="{{state.state_code}}"> {{state.state_name}} </option>
       </select>
 
       <select class="input-sm"
               ng-if="updateLocation.selectedOption == 'district'"
               ng-model="updateLocation.selectCity">
         <option value="" selected> Select City</option>
-        <option value="city"> City </option>
+        <option ng-repeat="city in updateLocation.citiesArr" value="{{city.city_code}}"> {{city.city_name}} </option>
       </select>
 
       <input type="text" ng-model="updateLocation.locationValue"

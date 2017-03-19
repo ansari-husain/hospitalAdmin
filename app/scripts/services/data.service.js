@@ -38,5 +38,38 @@ angular.module('hospitaladminApp')
       return defer.promise;
     };
 
+    DataService.updateState = function(state){
+      var defer = $q.defer();
+      $http.post(base_url1+'add_state',state)
+        .then(function(res){
+          defer.resolve(res);
+        },function(err){
+          defer.resolve(err);
+        });
+      return defer.promise;
+    };
+
+    DataService.updateCity = function(city){
+      var defer = $q.defer();
+      $http.post(base_url1+'add_city',city)
+        .then(function(res){
+          defer.resolve(res);
+        },function(err){
+          defer.resolve(err);
+        });
+      return defer.promise;
+    };
+
+    DataService.updateArea = function(area){
+      var defer = $q.defer();
+      $http.post(base_url1+'add_area',area)
+        .then(function(res){
+          defer.resolve(res);
+        },function(err){
+          defer.resolve(err);
+        });
+      return defer.promise;
+    };
+
     return DataService;
   });
