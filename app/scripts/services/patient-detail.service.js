@@ -4,9 +4,9 @@
 angular.module('hospitaladminApp')
         .factory('locationService',function($q,$http,base_url1){
 
-    var locationFactory = {};
+    var locationService = {};
 
-    locationFactory.fetchPatients = function(){
+    locationService.fetchPatients = function(){
       var defer = $q.defer();
       $http.get(base_url1+'get_patients')
         .then(function(res){
@@ -17,5 +17,18 @@ angular.module('hospitaladminApp')
       return defer.promise;
     };
 
-    return locationFactory;
+    locationService.updatePatient = function(patient){
+      var defer = $q.defer();
+      $http.post(base_url1+'edit_patient',patient)
+        .then(function(res){
+          console.log('Success Service',res)
+          defer.resolve(res);
+        },function(err){
+          defer.resolve(err);
+          console.log('err service ',err)
+        });
+      return defer.promise;
+    };
+
+    return locationService;
   });

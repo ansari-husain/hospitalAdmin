@@ -15,6 +15,25 @@ angular.module('hospitaladminApp')
           })
     };
 
+    vm.getStates = function(){
+      DataService.getStates()
+        .then(function(res){
+          vm.statesArr = res.data;
+        })
+    };
+
+    vm.getCities = function(state){
+      if(state == "" || state == null){
+        vm.citiesArr = [];
+      } else {
+        DataService.getCities(state)
+          .then(function (res) {
+            vm.citiesArr = res.data;
+          }, function (err) {
+            console.log(err);
+          })
+      }
+    };
 
       //vm.viewTemplate = "<span data-toggle='tootltip' title='Open' ng-click='grid.appScope.patDetail.fnOpenPatientModal(row,$event)' class='fa fa-lg fa-eye'></span>";
       vm.No = '<span>{{grid.renderContainers.body.visibleRowCache.indexOf(row) + 1}}</span>';

@@ -14,6 +14,18 @@ angular.module('hospitaladminApp')
       return defer.promise;
     };
 
+    DataService.getCities = function(state){
+      var defer = $q.defer();
+      $http.get(base_url1+'get_cities'+(state ? '&state_code='+state : ''))
+        .then(function(res){
+          defer.resolve(res);
+
+        },function(err){
+          defer.reject(err);
+        });
+      return defer.promise;
+    };
+
     DataService.addHospital = function(hospital){
       var defer = $q.defer();
       $http.post(base_url1+'add_hospital',hospital)

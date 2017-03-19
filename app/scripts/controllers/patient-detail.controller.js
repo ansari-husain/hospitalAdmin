@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('hospitaladminApp')
-  .controller('PatientDetailCtrl', function (locationService,Auth) {
+  .controller('PatientDetailCtrl', function (locationService, DataService, Auth) {
     var vm = this ;
+
+    vm.isAdmin = Auth.isAdmin();
 
     vm.getAllPatient = function(){
       locationService.fetchPatients()
@@ -35,11 +37,18 @@ angular.module('hospitaladminApp')
       console.log(row.entity.full_name);
       vm.patientDetail = row.entity;
       $('#patientModal').modal();
+
     };
 
     vm.fnSavePatientDetail = function(){
       console.log('called saved');
       $('#patientModal').modal('toggle');
+      locationService.updatePatient(vm.patientDetail)
+        .then(function(res){
+          console.log('controller res ',res);
+        },function(err){
+          console.log('error controller ',err);
+        })
     };
 
     vm.strToInt = function(val){
@@ -117,8 +126,32 @@ angular.module('hospitaladminApp')
 
     };
 
-    vm.initPatients = function(){
-      vm.getAllPatient();
-    }
 
+
+    vm.getStates = function(){
+      console.log('states');
+      DataService.getStates()
+        .then(function(res){
+          vm.statesArr = res.data;
+        })
+    };
+
+    vm.getCities = function(state){
+      if(state == "" || state == null){
+        vm.citiesArr = [];
+      } else {
+        DataService.getCities(state)
+          .then(function (res) {
+            vm.citiesArr = res.data;
+          }, function (err) {
+            console.log(err);
+          })
+      }
+    };
+
+
+    vm.initPatients = function(){
+      vm.getStates();
+      vm.getAllPatient();
+    };
   });

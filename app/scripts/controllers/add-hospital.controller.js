@@ -3,22 +3,25 @@
 angular.module('hospitaladminApp')
   .controller('AddHospitalCtrl',function(DataService){
       var vm = this;
-    //vm.hospital = {
-    //  "name":"Test Web",
-    //  "username":"gj_na",
-    //  "password":"123456",
-    //  "reg_number":"gj_na",
-    //  "address":"Surat city",
-    //  "city":"surat",
-    //  "state":"Gujarat",
-    //  "phone_number":"123456789",
-    //  "email":"test@test.com"
-    //};
+
     vm.getStates = function(){
       DataService.getStates()
         .then(function(res){
-          console.log(res);
+          vm.statesArr = res.data;
         })
+    };
+
+    vm.getCities = function(state){
+      if(state == "" || state == null){
+        vm.citiesArr = [];
+      } else {
+        DataService.getCities(state)
+          .then(function (res) {
+            vm.citiesArr = res.data;
+          }, function (err) {
+            console.log(err);
+          })
+      }
     };
 
     vm.fnAddData = function(){
@@ -26,9 +29,14 @@ angular.module('hospitaladminApp')
       vm.hospital.password = 123456;
         DataService.addHospital(vm.hospital)
           .then(function(res){
-            console.log(res);
+            vm.hospital = {};
           },function(err){
             console.log(err);
           })
+    };
+
+    vm.inItAddHospital = function(){
+          vm.getStates();
     }
+
   });

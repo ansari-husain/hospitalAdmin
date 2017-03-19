@@ -26,7 +26,7 @@ angular
   .constant('base_url1','http://www.jaliyaninfotech.com/hospital/hospital_service1.php?')
   .constant('base_url2','http://www.jaliyaninfotech.com/hospital/hospital_service2.php?')
   .constant('cookieName','hospitalAdmin')
-  .config(function ($urlRouterProvider,$locationProvider,$stateProvider) {
+  .config(function ($urlRouterProvider,$locationProvider,$stateProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/login');
 
     $stateProvider
