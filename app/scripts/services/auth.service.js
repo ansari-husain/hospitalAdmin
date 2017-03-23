@@ -9,44 +9,42 @@ angular.module('hospitaladminApp')
     }
     return {
 
-      login:function(user){
+      login: function (user) {
         var defer = $q.defer();
-        //$http.get(base_url1+'adminLoginVerification&username='+user.username+'&password='+user.password)
-          $http.post(base_url1+'adminLoginVerification',user)
-          .then(function(res){
-            if(res.data.userName){
+        $http.post(base_url1 + 'adminLoginVerification', user)
+          .then(function (res) {
+            if (res.data.userName) {
               currentUser = res.data.userName[0];
-              $cookies.put(cookieName,JSON.stringify(res.data.userName[0]) );
+              $cookies.put(cookieName, JSON.stringify(res.data.userName[0]));
             }
             defer.resolve(res)
-          },function(err){
-            console.log('Auth Service ',err)
+          }, function (err) {
             defer.resolve(err);
           });
         return defer.promise;
       },
 
-      getCurrentUser: function(){
+      getCurrentUser: function () {
         return currentUser;
       },
 
-      isLoggedIn: function(){
+      isLoggedIn: function () {
         return currentUser.hasOwnProperty('name');
       },
 
-      logout:function(){
+      logout: function () {
         $cookies.remove(cookieName);
         currentUser = {};
       },
 
-      isAdmin: function(){
+      isAdmin: function () {
         return currentUser.username === 'Admin';
       },
 
-      isLoggedInAsync: function(cb){
-        if(currentUser.hasOwnProperty('username')){
-            cb(true);
-        }else{
+      isLoggedInAsync: function (cb) {
+        if (currentUser.hasOwnProperty('username')) {
+          cb(true);
+        } else {
           cb(false)
         }
       }

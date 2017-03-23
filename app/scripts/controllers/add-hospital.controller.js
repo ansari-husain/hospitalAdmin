@@ -24,6 +24,19 @@ angular.module('hospitaladminApp')
       }
     };
 
+    vm.fnGetHospitalData = function () {
+      DataService.getHospital()
+        .then(function (res) {
+
+        }, function (err) {
+
+        })
+    };
+
+    vm.fnGetHospitalGrid = function () {
+      vm.fnGetHospitalData()
+    };
+
     vm.fnAddData = function () {
       vm.hospital.username = vm.hospital.reg_number;
       vm.hospital.password = 123456;
@@ -37,6 +50,7 @@ angular.module('hospitaladminApp')
 
     vm.inItAddHospital = function () {
       vm.getStates();
+      vm.fnGetHospitalGrid();
     }
 
   });

@@ -7,31 +7,31 @@
     <div class="panel-body">
       <div class="input-group m-b-10">
         <span class="input-group-addon"> Name </span>
-        <input class="form-control" value="{{hosPro.currentUser.name}}">
+        <input class="form-control" ng-model="hosPro.hospitalPro.name" value="{{hosPro.hospitalPro.name}}">
       </div>
       <div class="input-group m-b-10">
         <span class="input-group-addon"> Registration Number </span>
-        <input class="form-control" value="{{hosPro.currentUser.reg_number}}" disabled>
+        <input class="form-control" ng-model="hosPro.hospitalPro.reg_number" value="{{hosPro.hospitalPro.reg_number}}" disabled>
       </div>
       <div class="input-group m-b-10">
         <span class="input-group-addon"> Hospital Address </span>
-        <input class="form-control" value="{{hosPro.currentUser.address}}">
+        <input class="form-control" ng-model="hosPro.hospitalPro.address" value="{{hosPro.hospitalPro.address}}">
       </div>
       <div class="input-group m-b-10">
         <span class="input-group-addon"> Hospital State </span>
-        <input class="form-control" value="{{hosPro.currentUser.state}}" disabled>
+        <input class="form-control" ng-model="hosPro.hospitalPro.state" value="{{hosPro.hospitalPro.state}}" disabled>
       </div>
       <div class="input-group m-b-10">
         <span class="input-group-addon"> Hospital City </span>
-        <input class="form-control" value="{{hosPro.currentUser.city}}" disabled>
+        <input class="form-control" ng-model="hosPro.hospitalPro.city" value="{{hosPro.hospitalPro.city}}" disabled>
       </div>
       <div class="input-group m-b-10">
         <span class="input-group-addon"> Phone Number </span>
-        <input class="form-control" value="{{hosPro.currentUser.phone_number}}">
+        <input class="form-control" ng-model="hosPro.hospitalPro.phone_number" value="{{hosPro.hospitalPro.phone_number}}">
       </div>
 
       <div style="float: right">
-        <button class="btn btn-primary" >Update</button>
+        <button class="btn btn-primary" ng-click="hosPro.fnUpdateProfile()" >Update</button>
         <button class="btn btn-default" >Cancel</button>
       </div>
     </div>

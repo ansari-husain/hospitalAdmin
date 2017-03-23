@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hospitaladminApp')
-  .controller('LoginCtrl', function ($rootScope, $location,  loginService, $cookies, cookieName, Auth) {
+  .controller('LoginCtrl', function ($rootScope, $location, loginService, $cookies, cookieName, Auth) {
     var vm = this;
 
     vm.fnLogin = function () {
@@ -9,7 +9,6 @@ angular.module('hospitaladminApp')
         .then(function (res) {
           $location.path('/patient-data');
         }, function (err) {
-          console.log(err);
           vm.user = {};
         });
       vm.user = {};

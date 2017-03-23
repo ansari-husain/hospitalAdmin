@@ -2,11 +2,29 @@
  * Created by LENOVO on 3/18/2017.
  */
 angular.module('hospitaladminApp')
-          .controller('BirthRegisterCtrl',function(){
+  .controller('BirthRegisterCtrl', function (Auth, DataService) {
     var vm = this;
-    vm.fnSave = function(){
-      console.log(vm.newBirth);
-      vm.newBirth = {};
+    vm.currentUser = Auth.getCurrentUser();
+    vm.fnSave = function () {
+      vm.hos_id = vm.currentUser.id;
+      if (vm.newBirth.date) {
+        vm.newBirth.date = vm.newBirth.date.getDate() + '/' + (vm.newBirth.date.getMonth() + 1) + '/' + vm.newBirth.date.getFullYear();
+      } else {
+        vm.newBirth.date = "";
+      }
+      if (vm.newBirth.time) {
+        vm.newBirth.time = vm.newBirth.time.getHours() + ':' + vm.newBirth.time.getMinutes();
+      } else {
+        vm.newBirth.time = "";
+      }
+
+      //DataService.birthRegistration(vm.newBirth)
+      //  .then(function(res){
+      //
+      //  },function(err){
+      //
+      //  });
+      //vm.newBirth = {};
     }
 
   });

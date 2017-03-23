@@ -1,7 +1,5 @@
-
-
 angular.module('hospitaladminApp')
-  .factory('loginService',function($q,$http,base_url1){
+  .factory('loginService', function () {
     var loginService = {};
     return loginService;
   });

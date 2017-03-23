@@ -4,23 +4,23 @@
     <form name="loginForm">
       <div class="panel-body">
         <div class=" m-b-10 text-center">
-          <input type="radio" name="regType" value="Live Birth" ng-model="birthReg.newBirth.birthType"> <span class="m-l-10">Live Birth</span>
-          <input type="radio" name="regType" value="missed/mtp" ng-model="birthReg.newBirth.birthType" class="m-l-10"> <span class="m-l-10">Missed / MTP</span>
+          <input type="radio" name="regType" value="Live Birth" ng-model="birthReg.newBirth.birth_type"> <span class="m-l-10">Live Birth</span>
+          <input type="radio" name="regType" value="missed/mtp" ng-model="birthReg.newBirth.birth_type" class="m-l-10"> <span class="m-l-10">Missed / MTP</span>
         </div>
 
         <div class="input-group m-b-10">
           <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-user"> </i></span>
-          <input type="text" class="form-control" ng-model="birthReg.newBirth.patientId" placeholder="Patient ID"
+          <input type="text" class="form-control" ng-model="birthReg.newBirth.p_id" placeholder="Patient ID"
                  style="margin: auto">
         </div>
         <div class="input-group m-b-10">
           <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-credit-card"> </i></span>
-          <input type="date" class="form-control" ng-model="birthReg.newBirth.birthDate" placeholder="Birth Date"
+          <input type="date" class="form-control" ng-model="birthReg.newBirth.date" placeholder="Birth Date"
                  style="margin: auto">
         </div>
         <div class="input-group m-b-10">
           <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-book"> </i></span>
-          <input type="time" class="form-control" ng-model="birthReg.newBirth.birthTime" placeholder="Birth Time"
+          <input type="time" class="form-control" ng-model="birthReg.newBirth.time" placeholder="Birth Time"
                  style="margin: auto">
         </div>
         <div class="input-group m-b-10">
@@ -37,7 +37,7 @@
           <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-plus"> </i></span>
           <!--<input type="text" class="form-control" ng-model="login.user.hospitalCity" placeholder="Hospital City"-->
                  <!--style="margin: auto">-->
-          <select class="form-control" ng-model="birthReg.newBirth.mod">
+          <select class="form-control" ng-model="birthReg.newBirth.mode_of_delivery">
             <option value="">Mode Of Delivery</option>
             <option value="natural">Natural</option>
             <option value="scissor">Scissor</option>
@@ -56,7 +56,7 @@
         </div>
         <div class="input-group m-b-10">
           <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-phone"></i></span>
-          <input type="text" class="form-control" ng-model="birthReg.newBirth.note" placeholder="Complication / Note">
+          <input type="text" class="form-control" ng-model="birthReg.newBirth.complication_note" placeholder="Complication / Note">
         </div>
         <div style="float: right">
           <button class="btn btn-primary" ng-click="birthReg.fnSave()">Add</button>
