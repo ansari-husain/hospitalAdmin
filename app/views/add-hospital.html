@@ -1,57 +1,91 @@
 <div ng-init="addHos.inItAddHospital()">
-  <div class="panel panel-default login-panel">
-    <div class="panel-heading text-center" style="background-color: #7986bc; color: white "><h4>Add Hospital</h4></div>
-    <form name="loginForm">
-      <div class="panel-body">
-        <div class="input-group m-b-10">
-          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-user"> </i></span>
-          <input type="text" class="form-control" ng-model="addHos.hospital.name" placeholder="Hospital Name"
-                 style="margin: auto">
-        </div>
-        <div class="input-group m-b-10">
-          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-credit-card"> </i></span>
-          <input type="text" class="form-control" ng-model="addHos.hospital.reg_number" placeholder="Registration Number"
-                 style="margin: auto">
-        </div>
-        <div class="input-group m-b-10">
-          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-book"> </i></span>
-          <input type="text" class="form-control" ng-model="addHos.hospital.address" placeholder="Hospital Address"
-                 style="margin: auto">
-        </div>
-        <div class="input-group m-b-10">
-          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-plus"> </i></span>
-          <!--<input type="text" class="form-control" ng-model="login.user.hospitalState" placeholder="Hospital State"-->
-                 <!--style="margin: auto">-->
-          <select class="form-control" ng-model="addHos.hospital.state" ng-change="addHos.getCities(addHos.hospital.state)">
-            <option value=""> Select State </option>
-            <option ng-repeat="state in addHos.statesArr" value="{{state.state_code}}">{{state.state_name}}</option>
-          </select>
-        </div>
-        <div class="input-group m-b-10">
-          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-plus"> </i></span>
-          <!--<input type="text" class="form-control" ng-model="login.user.hospitalCity" placeholder="Hospital City"-->
-                 <!--style="margin: auto">-->
-          <select class="form-control" ng-model="addHos.hospital.city">
-            <option value=""> Select city </option>
-            <option ng-repeat="city in addHos.citiesArr" value="{{city.city_code}}">{{city.city_name}}</option>
-          </select>
-        </div>
+  <button class="btn btn-primary m-b-10 m-r-15" title="Add Doctor"
+          style="float:right " ng-click="addHos.fnAddHospital()"><i
+    class="fa fa-lg fa-plus-circle"></i></button>
+</div>
+<div class="clearfix"></div>
+  <div ui-grid="addHos.gridOptions" style="width: 100%" ui-grid-pagination ></div>
 
-        <div class="input-group m-b-10">
-          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-phone"></i></span>
-          <input type="text" class="form-control" ng-model="addHos.hospital.phone_number" placeholder="Phone Number">
-        </div>
+  <div id="addHospital" class="modal fade">
+    <div class="modal-dialog modal-lg">
+      <form name="loginForm">
+        <div class="modal-content">
+          <div class="modal-header theme-accent">
+            <button type="button" class="close" style="color: white" data-dismiss="modal">&times;</button>
+            <div class=" text-center"><h4 ng-bind="addHos.hospital.id ? 'Update Hospital' : 'Add Hospital'"></h4></div>
+          </div>
+          <div class="modal-body">
 
-        <div class="input-group m-b-10">
-          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-envelope"></i></span>
-          <input type="text" class="form-control" ng-model="addHos.hospital.email" placeholder="E-mail">
-        </div>
+            <div class="input-group m-b-10">
+              <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-user"> </i></span>
+              <input type="text" class="form-control" ng-model="addHos.hospital.name" placeholder="Hospital Name"
+                     style="margin: auto">
+            </div>
+            <div class="input-group m-b-10">
+              <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-credit-card"> </i></span>
+              <input type="text" class="form-control" ng-model="addHos.hospital.reg_number"
+                     placeholder="Registration Number"
+                     style="margin: auto">
+            </div>
+            <div class="input-group m-b-10">
+              <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-book"> </i></span>
+              <input type="text" class="form-control" ng-model="addHos.hospital.address" placeholder="Hospital Address"
+                     style="margin: auto">
+            </div>
+            <div class="input-group m-b-10">
+              <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-plus"> </i></span>
 
-        <div style="float: right">
-          <button class="btn btn-primary" ng-click="addHos.fnAddData()">Add</button>
-          <button class="btn btn-default" ng-click="login.fnCancelLogin()">Cancel</button>
+              <select class="form-control" ng-model="addHos.hospital.state"
+                      ng-change="addHos.getCities(addHos.hospital.state)">
+                <option value=""> Select State</option>
+                <option ng-repeat="state in addHos.statesArr" value="{{state.state_code}}">{{state.state_name}}</option>
+              </select>
+            </div>
+            <div class="input-group m-b-10">
+              <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-plus"> </i></span>
+
+              <select class="form-control" ng-model="addHos.hospital.city">
+                <option value=""> Select city</option>
+                <option ng-repeat="city in addHos.citiesArr" value="{{city.city_code}}">{{city.city_name}}</option>
+              </select>
+            </div>
+
+            <div class="input-group m-b-10">
+              <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-phone"></i></span>
+              <input type="text" class="form-control" ng-model="addHos.hospital.phone_number"
+                     placeholder="Phone Number">
+            </div>
+
+            <div class="input-group m-b-10">
+              <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-envelope"></i></span>
+              <input type="text" class="form-control" ng-model="addHos.hospital.email" placeholder="E-mail">
+            </div>
+
+            <div class="modal-footer">
+              <div style="float: right">
+                <button class="btn btn-primary" ng-click="addHos.fnAddData()"
+                  ng-bind="addHos.hospital.id ? 'Update' : 'Add'"></button>
+                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
         </div>
+      </form>
+    </div>
+  </div>
+<div id="confirm" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header theme-accent ">
+        <h5 class="text-center"> Confirm Delete</h5>
       </div>
-    </form>
+      <div class="modal-body">
+        Remove <strong>{{addHos.hospital.name}}</strong> ?
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="addHos.fnDeleteConfirm()">Delete</button>
+        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
   </div>
 </div>

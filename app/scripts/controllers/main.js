@@ -41,4 +41,8 @@ angular.module('hospitaladminApp')
       $location.path('/login');
     };
     fnCheckActiveTab();
+    $(window).on('load',function(){
+
+    })
+
   });
