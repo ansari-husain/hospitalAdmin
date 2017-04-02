@@ -4,7 +4,7 @@ angular.module('hospitaladminApp')
   .controller('PatientDetailCtrl', function (locationService, DataService, Auth) {
     var vm = this;
 
-    vm.isAdmin = Auth.isAdmin();
+    vm.isAdmin = Auth.isAdmin;
 
     vm.getAllPatient = function () {
       locationService.fetchPatients()
@@ -39,14 +39,20 @@ angular.module('hospitaladminApp')
 
     };
 
+    vm.fnAddPatient = function(){
+      $('#patientModal').modal('toggle');
+    };
+
     vm.fnSavePatientDetail = function () {
       $('#patientModal').modal('toggle');
-      locationService.updatePatient(vm.patientDetail)
-        .then(function (res) {
+      if(vm.patientDetail.unique_id) {
+        locationService.updatePatient(vm.patientDetail)
+          .then(function (res) {
 
-        }, function (err) {
+          }, function (err) {
 
-        })
+          });
+      }
     };
 
     vm.strToInt = function (val) {

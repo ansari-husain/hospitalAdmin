@@ -1,7 +1,12 @@
 <div ng-init="patDetail.initPatients()">
 
-  <div >
-    <div ng-if="patDetail.isAdmin" ui-grid="patDetail.gridOptions" ui-grid-pagination></div>
+  <div>
+    <div ng-if="!patDetail.isAdmin()">
+      <button class="btn btn-primary m-b-10 m-r-15" title="Add Patient"
+              style="float:right " ng-click="patDetail.fnAddPatient()"><i
+        class="fa fa-lg fa-plus-circle"></i></button>
+    </div>
+    <div ng-if="patDetail.isAdmin()" ui-grid="patDetail.gridOptions" ui-grid-pagination></div>
       <!-- Modal -->
   <div id="patientModal" class="modal fade" role="dialog">
     <div class="modal-dialog " style="width: 100%">
@@ -32,7 +37,7 @@
             </tr>
             <tr>
               <th>Date Of Birth {{dob}}</th>
-              <td><input class="form-control" type="date" ng-model="patDetail.patientDetail.dob" value="{{patDetail.patientDetail.dob}}"/></td>
+              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.dob" value="{{patDetail.patientDetail.dob}}"/></td>
               <th>age</th>
               <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.age" value="{{patDetail.patientDetail.age}}"/></td>
               <th>Date of Anniversary</th>
@@ -48,9 +53,11 @@
               <th>Landmark</th>
               <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.address_landmark" value="{{patDetail.patientDetail.address_landmark}}"/></td>
               <th>State</th>
-              <td> <input class="form-control" ng-model="patDetail.patientDetail.state" value="{{patDetail.patientDetail.state}}" disabled></td>
+              <td> <input class="form-control" ng-model="patDetail.patientDetail.state" value="{{patDetail.patientDetail.state}}"
+                          ng-disabled="patDetail.patientDetail.id"></td>
               <th>City</th>
-              <td><input class="form-control" ng-model="patDetail.patientDetail.city" value="{{patDetail.patientDetail.city}}" disabled></td>
+              <td><input class="form-control" ng-model="patDetail.patientDetail.city" value="{{patDetail.patientDetail.city}}"
+                         ng-disabled="patDetail.patientDetail.id"></td>
             </tr>
 
             <tr>
@@ -77,7 +84,7 @@
 
             <tr>
               <th>Preferred Call Time</th>
-              <td><input class="form-control" type="time" ng-model="patDetail.patientDetail.pref_time_call" value="{{patDetail.patientDetail.pref_time_call}}"/></td>
+              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.pref_time_call" value="{{patDetail.patientDetail.pref_time_call}}"/></td>
 
               <th>Blood Group</th>
               <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.blood_grp" value="{{patDetail.patientDetail.blood_grp}}"/></td>
@@ -138,7 +145,7 @@
 
             <tr>
               <th>Last menstrual Date</th>
-              <td><input class="form-control" type="date" ng-model="patDetail.patientDetail.lmp" value="{{patDetail.patientDetail.lmp}}"/></td>
+              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.lmp" value="{{patDetail.patientDetail.lmp}}"/></td>
               <th>Gravid</th>
               <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.gravid" value="{{patDetail.patientDetail.gravid}}"/></td>
               <th>Para</th>
