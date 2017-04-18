@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('hospitaladminApp')
-  .controller('PatientDetailCtrl', function (locationService, DataService, Auth) {
+  .controller('PatientDetailCtrl', function (locationService, DataService, Auth, $timeout) {
     var vm = this;
 
     vm.isAdmin = Auth.isAdmin;
+    vm.currentUser = Auth.getCurrentUser();
+    vm.bloodGroupArray = ['A+','A-','B+','B-','O+','O-','AB+','AB-'];
+    vm.mopArray = ['Natural','LSCS','Vacuum','MTP','D&C'];
 
     vm.getAllPatient = function () {
       locationService.fetchPatients()
@@ -34,7 +37,36 @@ angular.module('hospitaladminApp')
 
     vm.fnOpenPatientModal = function (row, event) {
       event.preventDefault();
-      vm.patientDetail = row.entity;
+      var patientDetail = angular.copy(row.entity);
+      if (patientDetail.dob){
+        patientDetail.dob = moment(patientDetail.dob,'DD/MM/YYYY').toDate()
+      }
+      if (patientDetail.anniversary_date){
+        vm.AnniversaryYears = moment().diff(moment(patientDetail.anniversary_date,'DD/MM/YYYY').format('YYYY-MM-DD'),'years');
+        patientDetail.anniversary_date = moment(patientDetail.anniversary_date,'DD/MM/YYYY').toDate();
+      }
+      if (patientDetail.state){
+      }
+      if (patientDetail.state){
+        angular.forEach(vm.statesArr,function(obj){
+          if (obj.state_name == patientDetail.state){
+            patientDetail.state = obj.state_code ;
+              vm.getCities(obj.state_code);
+          }
+        });
+      }
+      if (patientDetail.city){
+        $timeout(function(){
+          angular.forEach(vm.citiesArr,function(obj){
+            if (obj.city_name.toLowerCase() == patientDetail.city.toLowerCase()){
+              patientDetail.city = obj.city_code;
+            }
+          });
+        },100)
+
+      }
+
+      vm.patientDetail = patientDetail;
       $('#patientModal').modal();
 
     };
@@ -43,10 +75,45 @@ angular.module('hospitaladminApp')
       $('#patientModal').modal('toggle');
     };
 
+    vm.calculateAge = function(){
+      if (vm.patientDetail.dob){
+        vm.patientDetail.age = moment().diff(moment(vm.patientDetail.dob).format('YYYY-MM-DD'),'years');
+      }
+    };
+
+    vm.calculateMarriageYears = function(){
+      if (vm.patientDetail.anniversary_date){
+        vm.AnniversaryYears = moment().diff(moment(vm.patientDetail.anniversary_date).format('YYYY-MM-DD'),'years');
+      }
+    };
+
+    vm.changeWeightFormat = function(){
+      vm.patientDetail.weight = parseFloat(vm.patientDetail.weight).toFixed(2);
+    };
+
+    vm.getNumber = function(num){
+      return new Array(num);
+    };
+
     vm.fnSavePatientDetail = function () {
       $('#patientModal').modal('toggle');
       if(vm.patientDetail.unique_id) {
-        locationService.updatePatient(vm.patientDetail)
+        var patientData = vm.patientDetail;
+
+        if (patientData.dob){
+         patientData.dob = moment(patientData.dob).format('DD/MM/YYYY');
+        }
+        if (patientData.anniversary_date){
+          patientData.anniversary_date = moment(patientData.anniversary_date).format('DD/MM/YYYY');
+        }
+        if (patientData.state){
+          angular.forEach(vm.statesArr,function(obj){
+            if (obj.state_code == patientData.state){
+              patientData.state = obj.state_name ;
+            }
+          });
+        }
+        locationService.updatePatient(patientData)
           .then(function (res) {
 
           }, function (err) {

@@ -157,6 +157,7 @@ angular
         }
         if (!next.authenticate && loggedIn) {
           $state.go('main.patient-data');
+          event.preventDefault();
         }
       });
     });

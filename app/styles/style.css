@@ -122,3 +122,6 @@ table tr td {
 :focus {
   outline: none;
 }
+fieldset{
+  margin-top: 15px;
+}

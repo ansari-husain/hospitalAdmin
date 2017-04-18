@@ -24,7 +24,7 @@
                  style="margin: auto">
         </div>
         <div class="input-group m-b-10">
-          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-plus"> </i></span>
+          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-venus-mars"> </i></span>
           <select class="form-control" ng-model="birthReg.newBirth.gender">
             <option value="">Gender</option>
             <option value="male">Male</option>
@@ -40,7 +40,7 @@
           <select class="form-control" ng-model="birthReg.newBirth.mode_of_delivery">
             <option value="">Mode Of Delivery</option>
             <option value="natural">Natural</option>
-            <option value="scissor">Scissor</option>
+            <option value="scissor">LSCS</option>
             <option value="vacuum">Vacuum</option>
             <option value="mtp">MTP</option>
             <option value="d&c">D&C</option>
@@ -52,10 +52,18 @@
 
         <div class="input-group m-b-10">
           <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-phone"></i></span>
-          <input type="text" class="form-control" ng-model="birthReg.newBirth.weight" placeholder="Weight">
+          <input type="text" class="form-control" ng-model="birthReg.newBirth.weight" ng-blur="birthReg.changeWeightFormat()" placeholder="Weight 00.00">
         </div>
+
         <div class="input-group m-b-10">
-          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-phone"></i></span>
+          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-hospital-o"></i></span>
+          <select class="form-control">
+            <option>Diseases</option>
+          </select>
+        </div>
+
+        <div class="input-group m-b-10">
+          <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-pencil-square-o"></i></span>
           <input type="text" class="form-control" ng-model="birthReg.newBirth.complication_note" placeholder="Complication / Note">
         </div>
         <div style="float: right">

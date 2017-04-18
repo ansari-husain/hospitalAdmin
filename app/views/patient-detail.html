@@ -7,209 +7,708 @@
         class="fa fa-lg fa-plus-circle"></i></button>
     </div>
     <div ng-if="patDetail.isAdmin()" ui-grid="patDetail.gridOptions" ui-grid-pagination></div>
-      <!-- Modal -->
-  <div id="patientModal" class="modal fade" role="dialog">
-    <div class="modal-dialog " style="width: 100%">
+    <!-- Modal -->
+    <div id="patientModal" class="modal fade" role="dialog">
+      <div class="modal-dialog " style="width: 100%">
 
-      <!-- Modal content-->
-      <div class="modal-content ">
-        <div class="modal-header" style="background-color: navy;color: white">
-          <button type="button" class="close" style="color: white" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">{{patDetail.patientDetail.full_name}}</h4>
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: navy;color: white">
+            <button type="button" class="close" style="color: white" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title text-center" ng-if="patDetail.patientDetail.unique_id">
+              {{patDetail.patientDetail.full_name}}</h4>
+            <h4 class="modal-title text-center" ng-if="!patDetail.patientDetail.unique_id">
+              {{patDetail.currentUser.name}}</h4>
+          </div>
+          <div class="modal-body">
+            <form name="patientAdd">
+              <div class="row">
+                <div class="col-sm-1">
+                  <label for="patientId">PatientId</label>
+                </div>
+                <div class="col-sm-2" id="patientId">
+                  {{patDetail.patientDetail.unique_id}}
+                </div>
+                <div class="col-sm-2" ng-if="patDetail.patientDetail.unique_id">
+                  <label>Hospital Name</label>
+                </div>
+                <div class="col-sm-4" ng-if="patDetail.patientDetail.unique_id">
+                  <div ng-if="patDetail.patientDetail.name">{{patDetail.patientDetail.name}}</div>
+                </div>
+              </div>
+
+              <fieldset>
+                <legend>Personal Info</legend>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label for="firstName"> First Name </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input id="firstName" class="form-control" type="text" ng-model="patDetail.patientDetail.pname"
+                           value="{{patDetail.patientDetail.pname}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label for="lastName">Last Name</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input id="lastName" class="form-control" type="text"
+                           ng-model="patDetail.patientDetail.surname"
+                           value="{{patDetail.patientDetail.surname}}"/></div>
+                  <div class="col-sm-1">
+                    <label> Husband Name</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control"
+                           type="text"
+                           ng-model="patDetail.patientDetail.hname"
+                           value="{{patDetail.patientDetail.hname}}"/>
+                  </div>
+                  <div class="col-sm-1"></div>
+                  <div class="col-sm-2"></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label>Date Of Birth</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control"
+                           type="date"
+                           ng-change="patDetail.calculateAge()"
+                           ng-model="patDetail.patientDetail.dob"
+                           value="{{patDetail.patientDetail.dob}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Age </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <label> {{patDetail.patientDetail.age}}</label>
+                  </div>
+                  <div class="col-sm-1">
+                    <label>Date of Anniversary</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control"
+                           type="date"
+                           ng-change="patDetail.calculateMarriageYears()"
+                           ng-model="patDetail.patientDetail.anniversary_date"
+                           value="{{patDetail.patientDetail.anniversary_date}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label>Marriage Yrs</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <label> {{patDetail.AnniversaryYears}} </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label> Father Name</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text"
+                           ng-model="patDetail.patientDetail.fname"
+                           value="{{patDetail.patientDetail.fname}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Father in law Name</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control"
+                           type="text"
+                           ng-model="patDetail.patientDetail.flname"
+                           value="{{patDetail.patientDetail.flname}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label>Wife Phone</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control"
+                           type="text"
+                           ng-model="patDetail.patientDetail.phone_wife"
+                           value="{{patDetail.patientDetail.phone_wife}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label>Husband Phone</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control"
+                           type="text"
+                           ng-model="patDetail.patientDetail.phone_husband"
+                           value="{{patDetail.patientDetail.phone_husband}}"/>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label>Preferred Call Time</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="time" ng-model="patDetail.patientDetail.pref_time_call"
+                           value="{{patDetail.patientDetail.pref_time_call}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Height </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text"
+                           ng-model="patDetail.patientDetail.height"
+                           name="height"
+                           ng-pattern="/^[\d]{3}$/"
+                           value="{{patDetail.patientDetail.height}}" placeholder="Height in cm"/>
+
+                    <div ng-messages="patientAdd.height.$error">
+                      <div ng-message="pattern" class="text-danger">Must be three digit number.</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Weight </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text"
+                           ng-model="patDetail.patientDetail.weight"
+                           placeholder="00.00"
+                           ng-blur="patDetail.changeWeightFormat()"
+                           value="{{patDetail.patientDetail.weight}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label>Blood Group</label>
+                  </div>
+                  <div class="col-sm-1">
+                    <select class="form-control"
+                            ng-model="patDetail.patientDetail.blood_grp"
+                            ng-options="grp for grp in patDetail.bloodGroupArray">
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label>Id Proof Type</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.id_proof_type"
+                           value="{{patDetail.patientDetail.id_proof_type}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label>Id Proof No.</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.id_proof_no"
+                           value="{{patDetail.patientDetail.id_proof_no}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label>Religion</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.religion"
+                           value="{{patDetail.patientDetail.religion}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Cast / Community </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.cast_community"
+                           value="{{patDetail.patientDetail.cast_community}}"/>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label> Maternal Info </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.maternal_info"
+                           value="{{patDetail.patientDetail.maternal_info}}"/>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Address Info</legend>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label>Address</label>
+                  </div>
+                  <div class="col-sm-3">
+                    <input class="form-control" style="width:100%" type="text"
+                           ng-model="patDetail.patientDetail.address"
+                           value="{{patDetail.patientDetail.address}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Landmark </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.address_landmark"
+                           value="{{patDetail.patientDetail.address_landmark}}"/>
+                  </div>
+                  <div class="col-sm-1" style="width: 50px">
+                    <label> state </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <select class="form-control"
+                            ng-model="patDetail.patientDetail.state"
+                            ng-change="patDetail.getCities(patDetail.patientDetail.state)"
+                            ng-options="state.state_code as state.state_name for state in patDetail.statesArr"> </select>
+                  </div>
+                  <div class="col-sm-1" style="width: 50px">
+                    <label>City</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <select class="form-control"
+                            ng-model="patDetail.patientDetail.city"
+                            ng-options="city.city_code as city.city_name for city in patDetail.citiesArr">
+
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend> Family Info</legend>
+
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label> profession Of Father </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.prof_father"
+                           value="{{patDetail.patientDetail.prof_father}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Profession Of Mother </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.prof_mother"
+                           value="{{patDetail.patientDetail.prof_mother}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Father Education</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.edu_father"
+                           value="{{patDetail.patientDetail.edu_father}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Mother Education </label>
+                  </div>
+                  <div class="col-sm-2">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.edu_mother"
+                           value="{{patDetail.patientDetail.edu_mother}}"/>
+                  </div>
+                </div>
+
+              </fieldset>
+
+              <fieldset>
+                <legend> Obstetric History</legend>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label> Mode Of Pregnancy</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <!--<input class="form-control" type="text" ng-model="patDetail.patientDetail.modeOfPregnancy"-->
+                    <!--value="{{patDetail.patientDetail.modeOfPregnancy}}"/>-->
+                    <select class="form-control"
+                            ng-model="patDetail.patientDetail.modeOfPregnancy"
+                            ng-options="mop for mop in patDetail.mopArray">
+
+                    </select>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> Number Of GS </label>
+                  </div>
+                  <div class="col-sm-1">
+                    <input class="form-control" type="number" ng-model="patDetail.patientDetail.numberOfGS"
+                           value="{{patDetail.patientDetail.numberOfGS}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label> LMP (Last Menstrual Period)</label>
+                  </div>
+                  <div class="col-sm-1">
+                    <input class="form-control" type="number" ng-model="patDetail.patientDetail.lmp"
+                           value="{{patDetail.patientDetail.lmp}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label>Gravid</label>
+                  </div>
+                  <div class="col-sm-1">
+                    <input class="form-control" type="number" ng-model="patDetail.patientDetail.gravid"
+                           value="{{patDetail.patientDetail.gravid}}"/>
+                  </div>
+                  <div class="col-sm-1">
+                    <label>Para</label>
+                  </div>
+                  <div class="col-sm-1">
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.para"
+                           value="{{patDetail.patientDetail.para}}"/>
+                  </div>
+                </div>
+                <div class="row m-b-5">
+                  <div class="col-sm-1">
+                    <label> Abortion </label>
+                  </div>
+                  <div class="col-sm-1">
+                    <input class="form-control" type="number" ng-model="patDetail.patientDetail.abortion"
+                           value="{{patDetail.patientDetail.abortion}}"/>
+                  </div>
+                  <div class="col-sm-1"></div>
+                  <div class="col-sm-1"></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label> No of Male child</label>
+                  </div>
+                  <div class="col-sm-1">
+                    <input class="form-control" type="number" ng-model="patDetail.patientDetail.noMaleChild"
+                           value="{{patDetail.patientDetail.noMaleChild}}"/>
+                  </div>
+                  <div ng-if="patDetail.patientDetail.noMaleChild && patDetail.patientDetail.noMaleChild > 0"
+                       ng-repeat="i in patDetail.getNumber(patDetail.patientDetail.noMaleChild) track by $index">
+                    <div ng-if="$index == 0">
+                      <div class="col-sm-1">
+                        <label> MaleChild DOB </label>
+                      </div>
+                      <div class="col-sm-2">
+                        <input type="date" class="form-control"/>
+                      </div>
+                      <div class="col-sm-1">
+                        <label> Year of male child</label>
+                      </div>
+                      <div class="col-sm-2">
+                        age
+                      </div>
+                      <div class="col-sm-1">
+                        <label>Months of male child</label>
+                      </div>
+                      <div class="col-sm-2">
+                        month
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row" ng-if="patDetail.patientDetail.noMaleChild && patDetail.patientDetail.noMaleChild > 1"
+                     ng-repeat="i in patDetail.getNumber(patDetail.patientDetail.noMaleChild) track by $index">
+                  <div ng-if="$index!=0">
+
+                    <div class="col-sm-offset-2 col-sm-1">
+                      <label> MaleChild DOB </label>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="date" class="form-control"/>
+                    </div>
+                    <div class="col-sm-1">
+                      <label> Year of male child</label>
+                    </div>
+                    <div class="col-sm-2">
+                      age
+                    </div>
+                    <div class="col-sm-1">
+                      <label>Months of male child</label>
+                    </div>
+                    <div class="col-sm-2">
+                      month
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <label> No of Female child</label>
+                  </div>
+                  <div class="col-sm-1">
+                    <input class="form-control" type="number" ng-model="patDetail.patientDetail.noFemaleChild"
+                           value="{{patDetail.patientDetail.noFemaleChild}}"/>
+                  </div>
+                  <div ng-if="patDetail.patientDetail.noFemaleChild && patDetail.patientDetail.noFemaleChild > 0"
+                       ng-repeat="i in patDetail.getNumber(patDetail.patientDetail.noFemaleChild) track by $index">
+                    <div ng-if="$index == 0">
+                      <div class="col-sm-1">
+                        <label> FemaleChild DOB </label>
+                      </div>
+                      <div class="col-sm-2">
+                        <input type="date" class="form-control"/>
+                      </div>
+                      <div class="col-sm-1">
+                        <label> Year of female child</label>
+                      </div>
+                      <div class="col-sm-2">
+                        age
+                      </div>
+                      <div class="col-sm-1">
+                        <label>Months of female child</label>
+                      </div>
+                      <div class="col-sm-2">
+                        month
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" ng-if="patDetail.patientDetail.noFemaleChild > 1"
+                     ng-repeat="i in patDetail.getNumber(patDetail.patientDetail.noFemaleChild) track by $index">
+                  <div ng-if="$index != 0">
+
+                    <div class="col-sm-offset-2 col-sm-1">
+                      <label> Female Child DOB </label>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="date" class="form-control"/>
+                    </div>
+                    <div class="col-sm-1">
+                      <label> Year of female child</label>
+                    </div>
+                    <div class="col-sm-2">
+                      age
+                    </div>
+                    <div class="col-sm-1">
+                      <label>Months of female child</label>
+                    </div>
+                    <div class="col-sm-2">
+                      month
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Disease History</legend>
+
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <fieldset>
+                      <legend>Family</legend>
+                      <div class="col-sm-6">
+                        <input class="" type="checkbox" ng-model="patDetail.patientDetail.clinical"
+                               value="{{patDetail.patientDetail.clinical}}"/> <label>Clinical</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input class="" type="checkbox" ng-model="patDetail.patientDetail.bioChemical"
+                               value="{{patDetail.patientDetail.bioChemical}}"/> <label>Bio Chemical</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input class="" type="checkbox" ng-model="patDetail.patientDetail.cytogenetic"
+                               value="{{patDetail.patientDetail.cytogenetic}}"/> <label>Cytogenetic</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input class="" type="checkbox" ng-model="patDetail.patientDetail.other"
+                               value="{{patDetail.patientDetail.other}}"/> <label>other</label>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-sm-5">
+                    <fieldset>
+                      <legend>Other</legend>
+                      <div class="col-sm-4">
+                        <label>Family Disease</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input class="form-control m-b-5" type="text"
+                               ng-model="patDetail.patientDetail.otherFamilyDisease"
+                               value="{{patDetail.patientDetail.otherFamilyDisease}}"/>
+                      </div>
+                      <div class="col-sm-4">
+                        <label> Mother Disease</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input class="form-control m-b-5" type="text" ng-model="patDetail.patientDetail.motherDisease"
+                               value="{{patDetail.patientDetail.motherDisease}}"/>
+                      </div>
+                      <div class="col-sm-4">
+                        <label>Father Disease</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input class="form-control m-b-5" type="text" ng-model="patDetail.patientDetail.fatherDeasease"
+                               value="{{patDetail.patientDetail.fatherDeasease}}"/>
+                      </div>
+                      <div class="col-sm-4">
+                        <label>Other Sibling Disease</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input class="form-control m-b-5" type="text" ng-model="patDetail.patientDetail.siblingDisease"
+                               value="{{patDetail.patientDetail.siblingDisease}}"/>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <fieldset>
+                      <legend>Sibling Disease</legend>
+                      <div class="col-sm-6">
+                        <input type="checkbox" ng-model="patDetail.patientDetail.chromosomal"
+                               value="{{patDetail.patientDetail.chromosomal}}"/> <label>Chromosomal</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="checkbox" ng-model="patDetail.patientDetail.metabolic"
+                               value="{{patDetail.patientDetail.metabolic}}"/> <label>Metabolic</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="checkbox" ng-model="patDetail.patientDetail.congenital"
+                               value="{{patDetail.patientDetail.congenital}}"/> <label>Congenital Anamoly</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="checkbox" ng-model="patDetail.patientDetail.mentalDisability"
+                               value="{{patDetail.patientDetail.mentalDisability}}"/> <label>Mental Disability</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="checkbox" ng-model="patDetail.patientDetail.himoglobinopathy"
+                               value="{{patDetail.patientDetail.himoglobinopathy}}"/> <label>Hemoglobinopathy</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="checkbox" ng-model="patDetail.patientDetail.sexLinked"
+                               value="{{patDetail.patientDetail.sexLinked}}"/> <label>Sex Linked Disorder</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="checkbox" ng-model="patDetail.patientDetail.singleGene"
+                               value="{{patDetail.patientDetail.singleGene}}"/> <label>Single Gene Disorder</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="checkbox" ng-model="patDetail.patientDetail.anyOther"
+                               value="{{patDetail.patientDetail.anyOther}}"/> <label>Any Other</label>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+
+              </fieldset>
+              <table class="table-responsive table-striped" style="width: 100%">
+
+                <tbody>
+
+                <!--<tr>
+                  <th>No. Of Male Child</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.noMaleChild"
+                             value="{{patDetail.patientDetail.noMaleChild}}"/></td>
+                  <th>No. Of Female Child</th>
+                  <td>
+                    <input class="form-control" type="text" ng-model="patDetail.patientDetail.noFemaleChild"
+                           value="{{patDetail.patientDetail.noFemaleChild}}"/></td>
+                  <th>Male Child D.O.B</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.maleChildBirthDate"
+                             value="{{patDetail.patientDetail.maleChildBirthDate}}"/></td>
+                  <th>Female Child D.O.B</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.femaleChildBirthDate"
+                             value="{{patDetail.patientDetail.femaleChildBirthDate}}"/></td>
+                </tr>
+                <tr>
+                  <th>Male Child Age</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.maleChildAge"
+                             value="{{patDetail.patientDetail.maleChildAge}}"/></td>
+                  <th>Male Child Months</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.maleChildMonth"
+                             value="{{patDetail.patientDetail.maleChildMonth}}"/></td>
+                  <th>Female Child Age</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.femaleChildAge"
+                             value="{{patDetail.patientDetail.femaleChildAge}}"/></td>
+                  <th>Female Child Months</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.femaleChildMonth"
+                             value="{{patDetail.patientDetail.femaleChildMonth}}"/></td>
+                </tr>-->
+
+           <!--     <tr>
+                  &lt;!&ndash;<th>Maternal Info</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.maternal_info"
+                             value="{{patDetail.patientDetail.maternal_info}}"/></td>&ndash;&gt;
+                  &lt;!&ndash;<th>Mode Of Pregnancy</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.modeOfPregnancy"
+                             value="{{patDetail.patientDetail.modeOfPregnancy}}"/></td>
+                  <th>Number Of GS</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.numberOfGS"
+                             value="{{patDetail.patientDetail.numberOfGS}}"/></td>&ndash;&gt;
+                  <th>Advanced Maternal Info</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.advanceMaternalInfo"
+                             value="{{patDetail.patientDetail.advanceMaternalInfo}}"/></td>
+                </tr>-->
+
+                <!--<tr>
+                  <th>Last menstrual Date</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.lmp"
+                             value="{{patDetail.patientDetail.lmp}}"/></td>
+                  <th>Gravid</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.gravid"
+                             value="{{patDetail.patientDetail.gravid}}"/></td>
+                  <th>Para</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.para"
+                             value="{{patDetail.patientDetail.para}}"/></td>
+                  <th>Abortion</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.abortion"
+                             value="{{patDetail.patientDetail.abortion}}"/></td>
+                </tr>-->
+
+                <!--<tr>
+                  <th>Mother Disease</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.motherDisease"
+                             value="{{patDetail.patientDetail.motherDisease}}"/></td>
+                  <th>Father Disease</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.fatherDeasease"
+                             value="{{patDetail.patientDetail.fatherDeasease}}"/></td>
+                  <th>Sibling Disease</th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.siblingDisease"
+                             value="{{patDetail.patientDetail.siblingDisease}}"/></td>
+
+                  <th><input type="checkbox" ng-model="patDetail.patientDetail.anyOther"
+                             value="{{patDetail.patientDetail.anyOther}}"/> Any Other
+                  </th>
+                  <td></td>
+                </tr>-->
+
+                <!--<tr>
+                  <th><input class="" type="checkbox" ng-model="patDetail.patientDetail.clinical"
+                             value="{{patDetail.patientDetail.clinical}}"/> Clinical
+                  </th>
+                  <th><input class="" type="checkbox" ng-model="patDetail.patientDetail.bioChemical"
+                             value="{{patDetail.patientDetail.bioChemical}}"/> Bio Chemical
+                  </th>
+
+                  <th><input class="" type="checkbox" ng-model="patDetail.patientDetail.cytogenetic"
+                             value="{{patDetail.patientDetail.cytogenetic}}"/> Cytogenetic
+                  </th>
+                  <th><input class="" type="checkbox" ng-model="patDetail.patientDetail.other"
+                             value="{{patDetail.patientDetail.other}}"/> other
+                  </th>
+                </tr>-->
+                <!--<tr>
+                  <th>Other Family Disease</th>
+
+
+                </tr>-->
+
+                <!--<tr>
+
+                  <th><input type="checkbox" ng-model="patDetail.patientDetail.chromosomal"
+                             value="{{patDetail.patientDetail.chromosomal}}"/> Chromosomal
+                  </th>
+                  <th><input type="checkbox" ng-model="patDetail.patientDetail.metabolic"
+                             value="{{patDetail.patientDetail.metabolic}}"/> Metabolic
+                  </th>
+                  <th><input type="checkbox" ng-model="patDetail.patientDetail.congenital"
+                             value="{{patDetail.patientDetail.congenital}}"/> Congenital Anamoly
+                  </th>
+                  <th><input type="checkbox" ng-model="patDetail.patientDetail.mentalDisability"
+                             value="{{patDetail.patientDetail.mentalDisability}}"/> Mental Disability
+                  </th>
+
+                  <th><input type="checkbox" ng-model="patDetail.patientDetail.himoglobinopathy"
+                             value="{{patDetail.patientDetail.himoglobinopathy}}"/> Hemoglobinopathy
+                  </th>
+                  <th><input type="checkbox" ng-model="patDetail.patientDetail.sexLinked"
+                             value="{{patDetail.patientDetail.sexLinked}}"/> Sex Linked Disorder
+                  </th>
+                  <th><input type="checkbox" ng-model="patDetail.patientDetail.singleGene"
+                             value="{{patDetail.patientDetail.singleGene}}"/> Single Gene Disorder
+                  </th>
+                  <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.otherFamilyDisease"
+                             value="{{patDetail.patientDetail.otherFamilyDisease}}"/></td>
+                </tr>-->
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="patDetail.fnSavePatientDetail()">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
-        <div class="modal-body">
-          <table class="table-responsive table-striped" style="width: 100%">
-            <tbody>
-            <tr>
-              <th>Patient Id</th>
-              <td>{{patDetail.patientDetail.unique_id}}</td>
-              <th>Hospital</th>
-              <td colspan="3">{{patDetail.patientDetail.name}}</td>
-            </tr>
-            <tr>
-              <th>First Name</th>
-              <td><input class="form-control"  type="text" ng-model="patDetail.patientDetail.pname" value="{{patDetail.patientDetail.pname}}"/></td>
-              <th>Last Name</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.surname" value="{{patDetail.patientDetail.surname}}"/></td>
-              <th>Husband Name</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.hname" value="{{patDetail.patientDetail.hname}}"/></td>
 
-            </tr>
-            <tr>
-              <th>Date Of Birth {{dob}}</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.dob" value="{{patDetail.patientDetail.dob}}"/></td>
-              <th>age</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.age" value="{{patDetail.patientDetail.age}}"/></td>
-              <th>Date of Anniversary</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.anniversary_date" value="{{patDetail.patientDetail.anniversary_date}}"/></td>
-
-            </tr>
-
-            <tr>
-              <th>Address</th>
-              <td colspan="3"><input class="form-control" style="width:100%" type="text" ng-model="patDetail.patientDetail.address"
-                                     value="{{patDetail.patientDetail.address}}"/>
-              </td>
-              <th>Landmark</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.address_landmark" value="{{patDetail.patientDetail.address_landmark}}"/></td>
-              <th>State</th>
-              <td> <input class="form-control" ng-model="patDetail.patientDetail.state" value="{{patDetail.patientDetail.state}}"
-                          ng-disabled="patDetail.patientDetail.id"></td>
-              <th>City</th>
-              <td><input class="form-control" ng-model="patDetail.patientDetail.city" value="{{patDetail.patientDetail.city}}"
-                         ng-disabled="patDetail.patientDetail.id"></td>
-            </tr>
-
-            <tr>
-              <th>Father Name</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.fname" value="{{patDetail.patientDetail.fname}}"/></td>
-              <th>Father in Law Name</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.flname" value="{{patDetail.patientDetail.flname}}"/></td>
-              <th>Patient Phone</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.phone_wife" value="{{patDetail.patientDetail.phone_wife}}"/></td>
-              <th>Husband Phone</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.phone_husband" value="{{patDetail.patientDetail.phone_husband}}"/></td>
-            </tr>
-
-            <tr>
-              <th>ID Proof Type</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.id_proof_type" value="{{patDetail.patientDetail.id_proof_type}}"/></td>
-              <th>ID Proof No.</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.id_proof_no" value="{{patDetail.patientDetail.id_proof_no}}"/></td>
-              <th>Religion</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.religion" value="{{patDetail.patientDetail.religion}}"/></td>
-              <th>Cast</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.cast_community" value="{{patDetail.patientDetail.cast_community}}"/></td>
-            </tr>
-
-            <tr>
-              <th>Preferred Call Time</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.pref_time_call" value="{{patDetail.patientDetail.pref_time_call}}"/></td>
-
-              <th>Blood Group</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.blood_grp" value="{{patDetail.patientDetail.blood_grp}}"/></td>
-
-              <th>Height</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.height" value="{{patDetail.patientDetail.height}}"/></td>
-
-              <th>Weight</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.weight" value="{{patDetail.patientDetail.weight}}"/></td>
-
-            </tr>
-
-            <tr>
-              <th>Profession of Father</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.prof_father" value="{{patDetail.patientDetail.prof_father}}"/></td>
-
-              <th>Profession of Mother</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.prof_mother" value="{{patDetail.patientDetail.prof_mother}}"/></td>
-
-              <th>Father Education</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.edu_father" value="{{patDetail.patientDetail.edu_father}}"/></td>
-
-              <th>Mother Education</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.edu_mother" value="{{patDetail.patientDetail.edu_mother}}"/></td>
-            </tr>
-
-            <tr>
-              <th>No. Of Male Child</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.noMaleChild" value="{{patDetail.patientDetail.noMaleChild}}"/></td>
-              <th>No. Of Female Child</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.noFemaleChild" value="{{patDetail.patientDetail.noFemaleChild}}"/></td>
-              <th>Male Child D.O.B</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.maleChildBirthDate" value="{{patDetail.patientDetail.maleChildBirthDate}}"/></td>
-              <th>Female Child D.O.B</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.femaleChildBirthDate" value="{{patDetail.patientDetail.femaleChildBirthDate}}"/></td>
-            </tr>
-            <tr>
-              <th>Male Child Age</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.maleChildAge" value="{{patDetail.patientDetail.maleChildAge}}"/></td>
-              <th>Male Child Months</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.maleChildMonth" value="{{patDetail.patientDetail.maleChildMonth}}"/></td>
-              <th>Female Child Age</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.femaleChildAge" value="{{patDetail.patientDetail.femaleChildAge}}"/></td>
-              <th>Female Child Months</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.femaleChildMonth" value="{{patDetail.patientDetail.femaleChildMonth}}"/></td>
-            </tr>
-
-            <tr>
-              <th>Maternal Info</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.maternal_info" value="{{patDetail.patientDetail.maternal_info}}"/></td>
-              <th>Mode Of Pregnancy</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.modeOfPregnancy" value="{{patDetail.patientDetail.modeOfPregnancy}}"/></td>
-              <th>Number Of GS</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.numberOfGS" value="{{patDetail.patientDetail.numberOfGS}}" /></td>
-              <th>Advanced Maternal Info</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.advanceMaternalInfo" value="{{patDetail.patientDetail.advanceMaternalInfo}}"/></td>
-            </tr>
-
-            <tr>
-              <th>Last menstrual Date</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.lmp" value="{{patDetail.patientDetail.lmp}}"/></td>
-              <th>Gravid</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.gravid" value="{{patDetail.patientDetail.gravid}}"/></td>
-              <th>Para</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.para" value="{{patDetail.patientDetail.para}}"/></td>
-              <th>Abortion</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.abortion" value="{{patDetail.patientDetail.abortion}}"/></td>
-            </tr>
-
-            <tr>
-              <th>Mother Disease</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.motherDisease" value="{{patDetail.patientDetail.motherDisease}}"/></td>
-              <th>Father Disease</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.fatherDeasease" value="{{patDetail.patientDetail.fatherDeasease}}"/></td>
-              <th>Sibling Disease</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.siblingDisease" value="{{patDetail.patientDetail.siblingDisease}}"/></td>
-
-              <th>Any Other</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.anyOther" value="{{patDetail.patientDetail.anyOther}}"/></td>
-            </tr>
-
-            <tr>
-              <th>Other Family Disease</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.otherFamilyDisease" value="{{patDetail.patientDetail.otherFamilyDisease}}"/></td>
-              <th>Clinical</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.clinical" value="{{patDetail.patientDetail.clinical}}"/></td>
-              <th>Bio Chemical</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.bioChemical" value="{{patDetail.patientDetail.bioChemical}}"/></td>
-
-              <th>other</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.other" value="{{patDetail.patientDetail.other}}"/></td>
-            </tr>
-            <tr>
-              <th>Cytogenetic</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.cytogenetic" value="{{patDetail.patientDetail.cytogenetic}}"/></td>
-              <th>Chromosomal</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.chromosomal" value="{{patDetail.patientDetail.chromosomal}}"/></td>
-              <th>Metabolic</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.metabolic" value="{{patDetail.patientDetail.metabolic}}"/></td>
-
-              <th>Mental Disability</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.mentalDisability" value="{{patDetail.patientDetail.mentalDisability}}"/></td>
-
-            </tr>
-
-            <tr>
-              <th>Congenital</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.congenital" value="{{patDetail.patientDetail.congenital}}"/></td>
-              <th>Himoglobinopathy</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.himoglobinopathy" value="{{patDetail.patientDetail.himoglobinopathy}}"/></td>
-              <th>SexLinked</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.sexLinked" value="{{patDetail.patientDetail.sexLinked}}"/></td>
-              <th>Signgle Gene</th>
-              <td><input class="form-control" type="text" ng-model="patDetail.patientDetail.singleGene" value="{{patDetail.patientDetail.singleGene}}"/></td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" ng-click="patDetail.fnSavePatientDetail()">Save</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
       </div>
-
     </div>
   </div>
-</div>
 </div>

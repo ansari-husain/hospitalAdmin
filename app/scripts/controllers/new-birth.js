@@ -5,6 +5,10 @@ angular.module('hospitaladminApp')
   .controller('BirthRegisterCtrl', function (Auth, DataService) {
     var vm = this;
     vm.currentUser = Auth.getCurrentUser();
+
+    vm.changeWeightFormat = function(){
+      vm.newBirth.weight = parseFloat(vm.newBirth.weight).toFixed(2);
+    };
     vm.fnSave = function () {
       vm.hos_id = vm.currentUser.id;
       if (vm.newBirth.date) {
