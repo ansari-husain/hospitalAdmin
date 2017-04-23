@@ -77,11 +77,16 @@
                            ng-model="patDetail.patientDetail.dob"
                            value="{{patDetail.patientDetail.dob}}"/>
                   </div>
-                  <div class="col-sm-1">
-                    <label> Age </label>
-                  </div>
-                  <div class="col-sm-2">
-                    <label> {{patDetail.patientDetail.age}}</label>
+                  <div>
+                    <div class="col-sm-1">
+                      <label> Age </label>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text"
+                             ng-change="patDetail.getDobFromAge()"
+                             class="form-control"
+                             ng-model="patDetail.patientDetail.age" />
+                    </div>
                   </div>
                   <div class="col-sm-1">
                     <label>Date of Anniversary</label>
@@ -97,7 +102,10 @@
                     <label>Marriage Yrs</label>
                   </div>
                   <div class="col-sm-2">
-                    <label> {{patDetail.AnniversaryYears}} </label>
+                    <input type="text"
+                           ng-change="patDetail.getMarriageDate()"
+                           class="form-control"
+                           ng-model="patDetail.AnniversaryYears">
                   </div>
                 </div>
                 <div class="row">

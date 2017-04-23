@@ -57,8 +57,8 @@
 
         <div class="input-group m-b-10">
           <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-hospital-o"></i></span>
-          <select class="form-control">
-            <option>Diseases</option>
+          <select ng-model="birthReg.newBirth.disease"
+                  class="form-control" ng-options="disease for disease in birthReg.diseases">
           </select>
         </div>
 

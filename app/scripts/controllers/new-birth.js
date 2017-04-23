@@ -6,6 +6,10 @@ angular.module('hospitaladminApp')
     var vm = this;
     vm.currentUser = Auth.getCurrentUser();
 
+    vm.diseases = [
+      'Normal','Neural tube defect','Down\'s syndrome','Cleft lip/cleft palate','Club foot','Development dysplasia of hip',
+      'Congenital cataract','Congenital heart disease','Ratinopathy of prematurity'
+    ];
     vm.changeWeightFormat = function(){
       vm.newBirth.weight = parseFloat(vm.newBirth.weight).toFixed(2);
     };

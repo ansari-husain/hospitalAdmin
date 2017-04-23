@@ -8,7 +8,7 @@ angular.module('hospitaladminApp')
     vm.currentUser = Auth.getCurrentUser();
     vm.bloodGroupArray = ['A+','A-','B+','B-','O+','O-','AB+','AB-'];
     vm.mopArray = ['Natural','LSCS','Vacuum','MTP','D&C'];
-
+    vm.today = moment().toDate();
     vm.getAllPatient = function () {
       locationService.fetchPatients()
         .then(function (response) {
@@ -78,6 +78,28 @@ angular.module('hospitaladminApp')
     vm.calculateAge = function(){
       if (vm.patientDetail.dob){
         vm.patientDetail.age = moment().diff(moment(vm.patientDetail.dob).format('YYYY-MM-DD'),'years');
+      }else {
+        vm.patientDetail.age = undefined;
+      }
+    };
+
+    vm.getDobFromAge = function () {
+      if(vm.patientDetail){
+        if(vm.patientDetail.age){
+          vm.patientDetail.dob = moment().subtract(parseInt(vm.patientDetail.age),'years').toDate();
+        }else {
+          vm.patientDetail.dob = undefined;
+        }
+      }
+    };
+
+    vm.getMarriageDate = function(){
+      if(vm.patientDetail){
+        if(vm.AnniversaryYears){
+          vm.patientDetail.anniversary_date = moment().subtract(parseInt(vm.AnniversaryYears),'years').toDate();
+        }else {
+          vm.patientDetail.anniversary_date = undefined;
+        }
       }
     };
 
