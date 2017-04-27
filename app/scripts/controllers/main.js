@@ -30,9 +30,11 @@ angular.module('hospitaladminApp')
     function fnCheckActiveTab(){
       var activeTab = $location.$$path.slice(1);
       var allItems = $('.navbar-nav').find('li');
-      $.each(allItems,function(item,val){
-        if($(val)[0].innerHTML.indexOf(activeTab) > 0){
+      angular.forEach(allItems,function(val){
+        if($(val)[0].innerHTML.indexOf(activeTab) > -1){
           $(val).addClass('active');
+        }else {
+          $(val).removeClass('active');
         }
       });
     }
@@ -40,9 +42,9 @@ angular.module('hospitaladminApp')
       Auth.logout();
       $location.path('/login');
     };
-    fnCheckActiveTab();
-    $(window).on('load',function(){
 
+    $(window).on('load',function(){
+      fnCheckActiveTab();
     })
 
   });

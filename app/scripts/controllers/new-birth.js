@@ -5,6 +5,7 @@ angular.module('hospitaladminApp')
   .controller('BirthRegisterCtrl', function (Auth, DataService) {
     var vm = this;
     vm.currentUser = Auth.getCurrentUser();
+    vm.isAdmin = Auth.isAdmin();
 
     vm.diseases = [
       'Normal','Neural tube defect','Down\'s syndrome','Cleft lip/cleft palate','Club foot','Development dysplasia of hip',

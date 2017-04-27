@@ -1,4 +1,4 @@
-<div>
+<div ng-if="!birthReg.isAdmin">
   <div class="panel panel-default login-panel">
     <div class="panel-heading text-center" style="background-color: #7986bc; color: white "><h4>New Birth Registration</h4></div>
     <form name="loginForm">
@@ -73,4 +73,549 @@
       </div>
     </form>
   </div>
+</div>
+<div ng-if="birthReg.isAdmin">
+  <div class="gray-backGround">
+    <div class="text-center -margin-t-30" ><h3 class="primary-color">Birth Entry Details</h3></div>
+  </div>
+
+  <form class="m-r-10 m-l-10">
+    <fieldset class="gray-backGround">
+      <legend class="legend-primary">Add Entry</legend>
+      <div class="pull-right m-r-15">
+        <span class="red">*</span><span>marked fields are mandatory</span>
+      </div>
+      <div class="panel panel-primary m-t-30 m-l-15 m-r-15">
+        <div class="panel-heading">
+          Child's Info
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p">
+                <span class=" primary-color m-r-5">1.</span>Birth Date <span class="red m-l-5">*</span>
+              <input type="date" class="form-control"></label>
+            </div>
+          <div class="col-sm-3">
+            <label class="text-center width-100p">Time
+            <input type="time" class="form-control"></label>
+          </div>
+          <div class="col-sm-2">
+            <label class="text-center width-100p"> <span class="primary-color m-r-5">2.</span> Gender
+            <select class="form-control">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select> </label>
+          </div>
+            <div class="col-sm-4">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">3.</span>Child Name
+              <input type="text" class="form-control"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+        <div class="panel-heading">
+          4. Father's Full Name
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span>
+                <span>Father's Name</span><span class="red m-l-5">*</span>
+              <input type="text" class="form-control"/></label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p">Grandfather's Name <span class="red m-l-5">*</span>
+              <input type="text" class="form-control"></label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p">Surname <span class="red m-l-5">*</span>
+              <input type="text" class="form-control"/></label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p">Mobile No. <span class="red m-l-5">*</span>
+              <input type="number" min="0" class="form-control"/> </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+
+        <div class="panel-heading">
+          5. Mother Details
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">A. </span> <span>Mother's Name</span>
+                <span class="red m-l-5">*</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"> <span>Mobile No</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Mother's Pragnancy No</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color">C.</span><span>Subcenter No.</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+        <div class="panel-heading">
+          6. Address of the parents at the time of Birth
+        </div>
+        <div class="panel-body">
+          <div class="p-5">
+            <div class="primary-subContent p-5">
+              This Address is being used to print on birth certificate, So Enter Full Address
+            </div>
+          </div>
+          <div class="row m-t-20">
+            <div class="col-sm-3">
+              <label class="text-center width-100p">Is In SMC limits? <span class="red m-l-5">*</span>
+                <select class="form-control">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span><span>Town/Village Code</span>
+                <span class="red m-l-5">*</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-6">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Address</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">C.</span><span>State</span>
+                <select class="form-control"></select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">D.</span><span>District</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">E.</span><span>Taluka</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">F.</span><span>Zone</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">G.</span><span>Ward</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+        <div class="panel-heading">
+          7. Permanent Address
+          <div class="pull-right">
+            <label class="text-center"><input type="checkbox"/> </label> <span>Same As Birth Address</span>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row m-t-20">
+            <div class="col-sm-3">
+              <label class="text-center width-100p">Is In SMC limits? <span class="red m-l-5">*</span>
+                <select class="form-control">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span><span>Town/Village Code</span>
+                <span class="red m-l-5">*</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-6">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Address</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">C.</span><span>State</span>
+                <select class="form-control"></select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">D.</span><span>District</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">E.</span><span>Taluka</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">F.</span><span>Zone</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">G.</span><span>Ward</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+        <div class="panel-heading">
+          8. Place of Birth
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span> <span> Birth Location </span>
+                <span class="red m-l-5">*</span>  <input type="text"class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-6">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span> Birth Address</span>
+              <span class="red m-l-5">*</span>  <input type="text" class="form-control"/>
+              </label>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+        <div class="panel-heading">
+          9. Informer
+        </div>
+        <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="text-center width-100p">Informer Type <span class="red m-l-5">*</span>
+                  <select class="form-control">
+
+                  </select>
+                </label>
+              </div>
+              <div class="col-sm-4">
+                <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span><span>Name Of Informer</span>
+                <span class="red m-l-5">*</span>
+                  <input type="text" class="form-control"/>
+                </label>
+              </div>
+              <div class="col-sm-4">
+                <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Address Of Informer </span>
+                  <span class="red m-l-5">*</span><input type="text" class="form-control"/>
+                </label>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+        <div class="panel-heading">
+        <div>
+          10. Mother's Address
+          <div class="pull-right">
+            <label class="f-w-normal m-b-0"><input type="checkbox"/>Same As permanent Address</label>
+
+          </div>
+        </div>
+          <div class="m-t-2">
+            &nbsp;
+            <div class="pull-right">
+              <label class="f-w-normal m-b-0"><input type="checkbox"/>Same As permanent Address</label>
+            </div>
+          </div>
+
+        </div>
+        <div class="panel-body">
+          <div class="row m-t-20">
+            <div class="col-sm-3">
+              <label class="text-center width-100p">Is In SMC limits? <span class="red m-l-5">*</span>
+                <select class="form-control">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span><span>Town/Village Code</span>
+                <span class="red m-l-5">*</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-6">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Address</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">C.</span><span>State</span>
+                <select class="form-control"></select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">D.</span><span>District</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">E.</span><span>Taluka</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">F.</span><span>Zone</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">G.</span><span>Ward</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+        <div class="panel-heading">
+          Other Info
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">11.</span><span>Religion Of Family</span>
+              <span class="red m-l-5">*</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span>Other Religion</span>
+                <span class="red m-l-5">*</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">12.</span><span>Father Education Level</span>
+                <span class="red m-l-5">*</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span><span>Father's Education</span>
+              <span class="red m-l-5">*</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">13.</span><span>Mother Education Level</span>
+                <span class="red m-l-5">*</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span><span>Mother's Education</span>
+                <span class="red m-l-5">*</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">14.</span><span>Father's Occupation</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">15.</span><span>Mother's Occupation</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">16.</span><span>Mother's Age(Marriage)</span>
+              <span class="red m-l-5">*</span>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"/>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">17.</span><span>Mother's Age(Birth)</span>
+              <span class="red m-l-5">*</span>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+        <div class="panel-heading p-b-12">
+          18. No Of Live Children
+          <div class="pull-right">
+            <label>
+              <input type="text"/>
+            </label>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span><span>Live Children Male</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Live Children Female</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary m-r-15 m-l-15">
+        <div class="panel-heading">
+          Other Info
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">19.</span><span>Place Of Delivery</span>
+                <span class="red m-l-5">*</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">20.</span><span>Delivery Method</span>
+                <span class="red m-l-5">*</span>
+                <select class="form-control">
+
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">21.</span><span>Birth Weight(in Kgs.)</span>
+              <span class="red m-l-5">*</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">22.</span><span>Duration of Pregnancy in Weeks</span>
+              <span class="red m-l-5">*</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">23.</span><span>Birth Defect</span>
+              <span class="red m-l-5">*</span>
+                <select class="form-control"></select>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span>Other Description</span> <span class="red m-l-5">*</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+            <div class="col-sm-3">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">25.</span><span>Remarks</span>
+              <span class="red m-l-5">*</span>
+                <input type="text" class="form-control"/>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="m-t-40 text-center form-submit-bg p-t-5 p-b-5">
+      <button class="btn btn-primary p-r-40 p-l-40">Submit</button>
+      <button class="btn btn-primary p-r-40 p-l-40">Cancel</button>
+    </div>
+  </form>
+
+
 </div>

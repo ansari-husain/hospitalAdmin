@@ -125,3 +125,40 @@ table tr td {
 fieldset{
   margin-top: 15px;
 }
+.gray-backGround {
+  background-color: #f0f0f0;
+}
+.legend-primary {
+  background-color: #337ab7;
+  color: #fff;
+  padding: 0 10px;
+  margin-left: 15px;
+  border:none;
+  border-bottom: none;
+  width: auto;
+}
+.primary-color{
+  color: #337ab7;
+}
+.red{
+  color: red;
+}
+.width-100p{
+  width: 100%;
+}
+.-margin-t-30{
+  margin-top: -30px;
+}
+.panel-heading{
+  padding: 7px 10px 2px;
+}
+.primary-subContent{
+ background-color: rgba(51,122,183,0.1);
+ color: #337ab7;
+}
+.f-w-normal{
+  font-weight: normal;
+}
+.form-submit-bg{
+  background-color: rgba(0,0,0,0.7);
+}
