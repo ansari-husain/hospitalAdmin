@@ -8,7 +8,7 @@ angular.module('hospitaladminApp')
       DataService.getStates()
         .then(function (res) {
           vm.statesArr = res.data;
-        })
+        });
     };
 
     vm.getCities = function (state) {
@@ -20,7 +20,7 @@ angular.module('hospitaladminApp')
             vm.citiesArr = res.data;
           }, function (err) {
 
-          })
+          });
       }
     };
 
@@ -31,7 +31,7 @@ angular.module('hospitaladminApp')
           vm.gridOptions.data = vm.doctorsArray;
         }, function (err) {
 
-        })
+        });
     };
 
       vm.fnEditHospital = function(row,event){
@@ -79,7 +79,7 @@ angular.module('hospitaladminApp')
 
       vm.No = '<span>{{grid.renderContainers.body.visibleRowCache.indexOf(row) + 1}}</span>';
       vm.action = '<span class="fa fa-lg fa-pencil mouseHoverPointer" title="Edit" style="color:navy" ng-click="grid.appScope.addHos.fnEditHospital(row,$event)"></span> | ' +
-        '<span class="fa fa-lg fa-trash mouseHoverPointer" title="Delete" style="color:red" ng-click="grid.appScope.addHos.fnDeleteHospital(row,$event)"></span>'
+        '<span class="fa fa-lg fa-trash mouseHoverPointer" title="Delete" style="color:red" ng-click="grid.appScope.addHos.fnDeleteHospital(row,$event)"></span>';
 
       vm.gridOptions = {
         enableSorting: false,
@@ -204,6 +204,6 @@ angular.module('hospitaladminApp')
 
         vm.fnGetHospitalData();
 
-    }
+    };
 
   });

@@ -121,7 +121,7 @@ angular
         if (response.status === 401) {
           $location.path('/login');
           // remove any stale tokens
-          $cookieStore.remove(cookieName);
+          $cookies.remove(cookieName);
           return $q.reject(response);
         }
         else {

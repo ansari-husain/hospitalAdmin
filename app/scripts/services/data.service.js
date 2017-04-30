@@ -50,6 +50,18 @@ angular.module('hospitaladminApp')
       return defer.promise;
     };
 
+    DataService.getNewBirthRegister = function () {
+      var defer = $q.defer();
+      $http.get(base_url1 + 'get_newbirth')
+        .then(function (res) {
+          defer.resolve(res)
+        }, function (err) {
+          defer.resolve(err)
+        });
+
+      return defer.promise;
+    };
+
     DataService.getHospital = function (hos_id) {
       var defer = $q.defer();
       $http.get(base_url1 + 'hospital_data' + (hos_id ? '&hos_id=' + hos_id : ''))

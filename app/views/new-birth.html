@@ -75,11 +75,19 @@
   </div>
 </div>
 <div ng-if="birthReg.isAdmin">
-  <div class="gray-backGround">
+  <div ng-if="!birthReg.isEditMode" ui-grid="birthReg.gridOptions" ui-grid-pagination>
+  </div>
+
+  <div class="gray-backGround" ng-if="birthReg.isEditMode">
     <div class="text-center -margin-t-30" ><h3 class="primary-color">Birth Entry Details</h3></div>
   </div>
 
-  <form class="m-r-10 m-l-10">
+  <div class="text-right m-r-15">
+    <button ng-if="birthReg.isEditMode" ng-click="birthReg.isEditMode = !birthReg.isEditMode"
+            class="btn btn-primary  p-r-40 p-l-40">Back</button>
+  </div>
+
+  <form class="m-r-10 m-l-10" ng-if="birthReg.isEditMode">
     <fieldset class="gray-backGround">
       <legend class="legend-primary">Add Entry</legend>
       <div class="pull-right m-r-15">
@@ -94,17 +102,18 @@
             <div class="col-sm-3">
               <label class="text-center width-100p">
                 <span class=" primary-color m-r-5">1.</span>Birth Date <span class="red m-l-5">*</span>
-              <input type="date" class="form-control"></label>
+              <input type="date" class="form-control" ng-model="birthReg.patientData.dob" readonly></label>
             </div>
           <div class="col-sm-3">
             <label class="text-center width-100p">Time
-            <input type="time" class="form-control"></label>
+            <input type="time" class="form-control"
+                   value="{{birthReg.patientData.time}}" readonly></label>
           </div>
           <div class="col-sm-2">
             <label class="text-center width-100p"> <span class="primary-color m-r-5">2.</span> Gender
-            <select class="form-control">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+            <select class="form-control" ng-model="birthReg.patientData.gender" readonly>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select> </label>
           </div>
             <div class="col-sm-4">
@@ -124,15 +133,15 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span>
                 <span>Father's Name</span><span class="red m-l-5">*</span>
-              <input type="text" class="form-control"/></label>
+              <input type="text" class="form-control" ng-model="birthReg.patient.fname"/></label>
             </div>
             <div class="col-sm-3">
               <label class="text-center width-100p">Grandfather's Name <span class="red m-l-5">*</span>
               <input type="text" class="form-control"></label>
             </div>
             <div class="col-sm-3">
-              <label class="text-center width-100p">Surname <span class="red m-l-5">*</span>
-              <input type="text" class="form-control"/></label>
+              <label class="text-center width-100p">Surname {{birthReg.patient.surname}}<span class="red m-l-5">*</span>
+              <input type="text" class="form-control" ng-model="birthReg.patient.surname"/></label>
             </div>
             <div class="col-sm-3">
               <label class="text-center width-100p">Mobile No. <span class="red m-l-5">*</span>
@@ -570,7 +579,7 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">20.</span><span>Delivery Method</span>
                 <span class="red m-l-5">*</span>
-                <select class="form-control">
+                <select ng-model="birthReg.patientData.mode_of_delivery" class="form-control" ng-options="method for method in birthReg.mopArray">
 
                 </select>
               </label>

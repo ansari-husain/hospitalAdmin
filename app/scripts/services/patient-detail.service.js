@@ -17,6 +17,17 @@ angular.module('hospitaladminApp')
       return defer.promise;
     };
 
+    locationService.getPatient = function (p_id) {
+      var defer = $q.defer();
+      $http.get(base_url1 + 'get_patient&unique_id='+p_id)
+        .then(function (res) {
+          defer.resolve(res);
+        }, function (err) {
+          defer.resolve(err);
+        });
+      return defer.promise;
+    };
+
     locationService.updatePatient = function (patient) {
       var defer = $q.defer();
       $http.post(base_url1 + 'edit_patient', patient)
