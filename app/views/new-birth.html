@@ -133,11 +133,11 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span>
                 <span>Father's Name</span><span class="red m-l-5">*</span>
-              <input type="text" class="form-control" ng-model="birthReg.patient.fname"/></label>
+              <input type="text" class="form-control" ng-model="birthReg.patient.hname"/></label>
             </div>
             <div class="col-sm-3">
               <label class="text-center width-100p">Grandfather's Name <span class="red m-l-5">*</span>
-              <input type="text" class="form-control"></label>
+              <input type="text" class="form-control" ng-model="birthReg.patient.flname"></label>
             </div>
             <div class="col-sm-3">
               <label class="text-center width-100p">Surname {{birthReg.patient.surname}}<span class="red m-l-5">*</span>
@@ -145,7 +145,7 @@
             </div>
             <div class="col-sm-3">
               <label class="text-center width-100p">Mobile No. <span class="red m-l-5">*</span>
-              <input type="number" min="0" class="form-control"/> </label>
+              <input type="number" min="0" class="form-control" ng-model="birthReg.patient.phone_husband"/> </label>
             </div>
           </div>
 
@@ -162,16 +162,16 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">A. </span> <span>Mother's Name</span>
                 <span class="red m-l-5">*</span>
-                <input type="text" class="form-control"/>
+                <input type="text" class="form-control" ng-model="birthReg.patient.pname"/>
               </label>
             </div>
             <div class="col-sm-3">
               <label class="text-center width-100p"> <span>Mobile No</span>
-                <input type="text" class="form-control"/>
+                <input type="text" class="form-control" ng-model="birthReg.patient.phone_wife"/>
               </label>
             </div>
             <div class="col-sm-3">
-              <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Mother's Pragnancy No</span>
+              <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Mother's Pregnancy No</span>
                 <input type="text" class="form-control"/>
               </label>
             </div>
@@ -206,21 +206,24 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span><span>Town/Village Code</span>
                 <span class="red m-l-5">*</span>
-                <select class="form-control">
+                <select class="form-control" ng-options="city.city_code as city.city_name for city in birthReg.citiesArr"
+                        ng-model="birthReg.patient.city">
 
                 </select>
               </label>
             </div>
             <div class="col-sm-6">
               <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Address</span>
-                <input type="text" class="form-control"/>
+                <input type="text" class="form-control" ng-model="birthReg.patient.address"/>
               </label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">C.</span><span>State</span>
-                <select class="form-control"></select>
+                <select class="form-control" ng-model="birthReg.patient.state"
+                        ng-change="birthReg.getCities(birthReg.patient.state)"
+                        ng-options="state.state_code as state.state_name for state in birthReg.statesArr"></select>
               </label>
             </div>
             <div class="col-sm-3">
@@ -380,7 +383,7 @@
         <div>
           10. Mother's Address
           <div class="pull-right">
-            <label class="f-w-normal m-b-0"><input type="checkbox"/>Same As permanent Address</label>
+            <label class="f-w-normal m-b-0"><input type="checkbox"/>Same As temporary Address</label>
 
           </div>
         </div>

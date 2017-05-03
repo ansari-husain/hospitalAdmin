@@ -76,11 +76,56 @@ angular.module('hospitaladminApp')
       vm.isEditMode = true;
     };
 
+    vm.getStates = function () {
+      DataService.getStates()
+        .then(function (res) {
+          vm.statesArr = res.data;
+        });
+    };
+
+    vm.getCities = function (state) {
+      if (state == "" || state == null) {
+        vm.citiesArr = [];
+      } else {
+        DataService.getCities(state)
+          .then(function (res) {
+            if (res.data && res.data.length > 0 && !(res.data.indexOf("null") > -1)){
+              console.log(res, res.data, res.data.indexOf("null"));
+              vm.citiesArr = res.data;
+            } else {
+              vm.citiesArr = [];
+            }
+            console.log('vm.citiesArr ',vm.citiesArr);
+            if (vm.patient.city) {
+              angular.forEach(vm.citiesArr, function (obj) {
+                if (obj.city_name === vm.patient.city) {
+                  vm.patient.city = obj.city_code;
+                }
+              });
+            }
+
+          }, function (err) {
+
+          });
+      }
+    };
+
     vm.getPatientData = function(pid){
       locationService.getPatient(pid)
         .then(function(res){
           vm.patientData.patient = res.data[0];
           vm.patient  = vm.patientData.patient;
+          vm.getStates();
+
+          if (vm.patient.state){
+            angular.forEach(vm.statesArr,function(obj){
+              if (obj.state_name === vm.patient.state){
+                vm.patient.state = obj.state_code;
+                vm.getCities(obj.state_code);
+              }
+            });
+          }
+
         },function(err){
 
         });
