@@ -13,7 +13,7 @@ angular.module('hospitaladminApp')
       'Congenital cataract','Congenital heart disease','Ratinopathy of prematurity'
     ];
     vm.mopArray = ['Natural','LSCS','Vacuum','MTP','D&C'];
-    vm.religionsArray = ['Hindu','Muslim','Sikh','Christian','Buddha','Other'];
+    //vm.religionsArray = ['Hindu','Muslim','Sikh','Christian','Buddha','Other'];
 
     vm.changeWeightFormat = function(){
       vm.newBirth.weight = parseFloat(vm.newBirth.weight).toFixed(2);
