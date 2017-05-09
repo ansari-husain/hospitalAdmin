@@ -228,31 +228,30 @@
             </div>
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">D.</span><span>District</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
               </label>
             </div>
             <div class="col-sm-2">
               <label class="text-center width-100p"><span class="primary-color m-r-5">E.</span><span>Taluka</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
+
               </label>
 
             </div>
             <div class="col-sm-2">
               <label class="text-center width-100p"><span class="primary-color m-r-5">F.</span><span>Zone</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
+
               </label>
             </div>
             <div class="col-sm-2">
               <label class="text-center width-100p"><span class="primary-color m-r-5">G.</span><span>Ward</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
+
               </label>
             </div>
           </div>
@@ -263,14 +262,14 @@
         <div class="panel-heading">
           7. Permanent Address
           <div class="pull-right">
-            <label class="text-center"><input type="checkbox"/> </label> <span>Same As Birth Address</span>
+            <label class="text-center"><input type="checkbox" ng-model="birthReg.patient.isAddressSame"/> </label> <span>Same As Birth Address</span>
           </div>
         </div>
         <div class="panel-body">
           <div class="row m-t-20">
             <div class="col-sm-3">
               <label class="text-center width-100p">Is In SMC limits? <span class="red m-l-5">*</span>
-                <select class="form-control">
+                <select class="form-control" ng-disabled="birthReg.patient.isAddressSame">
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
@@ -279,50 +278,49 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">A.</span><span>Town/Village Code</span>
                 <span class="red m-l-5">*</span>
-                <select class="form-control">
+                <select class="form-control" ng-disabled="birthReg.patient.isAddressSame">
 
                 </select>
               </label>
             </div>
             <div class="col-sm-6">
               <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Address</span>
-                <input type="text" class="form-control"/>
+                <input type="text" class="form-control" ng-disabled="birthReg.patient.isAddressSame"/>
               </label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">C.</span><span>State</span>
-                <select class="form-control"></select>
+                <select class="form-control" ng-disabled="birthReg.patient.isAddressSame"></select>
               </label>
             </div>
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">D.</span><span>District</span>
-                <select class="form-control">
+                <input type="text" class="form-control" ng-disabled="birthReg.patient.isAddressSame">
 
-                </select>
+
               </label>
             </div>
             <div class="col-sm-2">
               <label class="text-center width-100p"><span class="primary-color m-r-5">E.</span><span>Taluka</span>
-                <select class="form-control">
+                <input type="text" class="form-control" ng-disabled="birthReg.patient.isAddressSame">
 
-                </select>
+
               </label>
 
             </div>
             <div class="col-sm-2">
               <label class="text-center width-100p"><span class="primary-color m-r-5">F.</span><span>Zone</span>
-                <select class="form-control">
+                <input type="text" class="form-control" ng-disabled="birthReg.patient.isAddressSame">
 
-                </select>
+
               </label>
             </div>
             <div class="col-sm-2">
               <label class="text-center width-100p"><span class="primary-color m-r-5">G.</span><span>Ward</span>
-                <select class="form-control">
+                <input type="text" class="form-control" ng-disabled="birthReg.patient.isAddressSame">
 
-                </select>
               </label>
             </div>
           </div>
@@ -358,9 +356,9 @@
             <div class="row">
               <div class="col-sm-4">
                 <label class="text-center width-100p">Informer Type <span class="red m-l-5">*</span>
-                  <select class="form-control">
+                  <input type="text" class="form-control">
 
-                  </select>
+
                 </label>
               </div>
               <div class="col-sm-4">
@@ -427,31 +425,30 @@
             </div>
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">D.</span><span>District</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
+
               </label>
             </div>
             <div class="col-sm-2">
               <label class="text-center width-100p"><span class="primary-color m-r-5">E.</span><span>Taluka</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
               </label>
 
             </div>
             <div class="col-sm-2">
               <label class="text-center width-100p"><span class="primary-color m-r-5">F.</span><span>Zone</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
+
               </label>
             </div>
             <div class="col-sm-2">
               <label class="text-center width-100p"><span class="primary-color m-r-5">G.</span><span>Ward</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
+
               </label>
             </div>
           </div>
@@ -467,7 +464,8 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">11.</span><span>Religion Of Family</span>
               <span class="red m-l-5">*</span>
-                <select class="form-control">
+                <select class="form-control" ng-model="birthReg.patient.religion"
+                        ng-options="rel for rel in birthReg.religionsArray">
 
                 </select>
               </label>
@@ -481,9 +479,9 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">12.</span><span>Father Education Level</span>
                 <span class="red m-l-5">*</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
+
               </label>
             </div>
             <div class="col-sm-3">
@@ -497,9 +495,9 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">13.</span><span>Mother Education Level</span>
                 <span class="red m-l-5">*</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
+
               </label>
             </div>
             <div class="col-sm-3">
@@ -574,9 +572,9 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">19.</span><span>Place Of Delivery</span>
                 <span class="red m-l-5">*</span>
-                <select class="form-control">
+                <input type="text" class="form-control">
 
-                </select>
+
               </label>
             </div>
             <div class="col-sm-3">
@@ -604,7 +602,7 @@
             <div class="col-sm-3">
               <label class="text-center width-100p"><span class="primary-color m-r-5">23.</span><span>Birth Defect</span>
               <span class="red m-l-5">*</span>
-                <select class="form-control"></select>
+                <input type="text" class="form-control">
               </label>
             </div>
             <div class="col-sm-3">

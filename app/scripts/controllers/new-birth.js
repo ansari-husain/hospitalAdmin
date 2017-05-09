@@ -13,6 +13,7 @@ angular.module('hospitaladminApp')
       'Congenital cataract','Congenital heart disease','Ratinopathy of prematurity'
     ];
     vm.mopArray = ['Natural','LSCS','Vacuum','MTP','D&C'];
+    vm.religionsArray = ['Hindu','Muslim','Sikh','Christian','Buddha','Other'];
 
     vm.changeWeightFormat = function(){
       vm.newBirth.weight = parseFloat(vm.newBirth.weight).toFixed(2);
@@ -41,7 +42,7 @@ angular.module('hospitaladminApp')
     };
 
     vm.timeChanged = function(){
-      console.log(typeof vm.patientData.time)
+      //console.log(typeof vm.patientData.time)
     };
 
     vm.getNewBirth = function(){
@@ -90,12 +91,12 @@ angular.module('hospitaladminApp')
         DataService.getCities(state)
           .then(function (res) {
             if (res.data && res.data.length > 0 && !(res.data.indexOf("null") > -1)){
-              console.log(res, res.data, res.data.indexOf("null"));
+              //console.log(res, res.data, res.data.indexOf("null"));
               vm.citiesArr = res.data;
             } else {
               vm.citiesArr = [];
             }
-            console.log('vm.citiesArr ',vm.citiesArr);
+            //console.log('vm.citiesArr ',vm.citiesArr);
             if (vm.patient.city) {
               angular.forEach(vm.citiesArr, function (obj) {
                 if (obj.city_name === vm.patient.city) {
