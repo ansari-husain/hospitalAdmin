@@ -10,25 +10,35 @@ angular.module('hospitaladminApp')
     vm.mopArray = ['Natural','LSCS','Vacuum','MTP','D&C'];
     vm.today = moment().toDate();
     vm.getAllPatient = function () {
-      locationService.fetchPatients()
+      if (vm.currentUser.id == 1){
+        var id = null;
+      } else {
+        id = vm.currentUser.id;
+      }
+      locationService.fetchPatients(id)
         .then(function (response) {
 
           vm.patientData = response.data;
-          angular.forEach(vm.patientData, function (obj) {
-            obj.full_name = obj.pname + ' ' + obj.hname + ' ' + obj.surname;
-            var phone1 = obj.phone_wife;
-            var phone2 = obj.phone_husband;
-            if (phone1 && phone2) {
-              obj.phone_number = phone1 + ', ' + phone2;
 
-            } else if (phone1 && !phone2) {
-              obj.phone_number = phone1;
-            } else if (!phone1 && phone2) {
-              obj.phone_number = phone2;
-            } else {
-              obj.phone_number = '';
-            }
-          });
+          if(typeof vm.patientData === 'object') {
+            angular.forEach(vm.patientData, function (obj) {
+              obj.full_name = obj.pname + ' ' + obj.hname + ' ' + obj.surname;
+              var phone1 = obj.phone_wife;
+              var phone2 = obj.phone_husband;
+              if (phone1 && phone2) {
+                obj.phone_number = phone1 + ', ' + phone2;
+
+              } else if (phone1 && !phone2) {
+                obj.phone_number = phone1;
+              } else if (!phone1 && phone2) {
+                obj.phone_number = phone2;
+              } else {
+                obj.phone_number = '';
+              }
+            });
+          }else {
+            vm.patientData = [];
+          }
           vm.gridOptions.data = vm.patientData;
         }, function (error) {
 
@@ -152,7 +162,7 @@ angular.module('hospitaladminApp')
       }
     };
 
-    vm.viewTemplate = "<span data-toggle='tootltip' title='Open' ng-click='grid.appScope.patDetail.fnOpenPatientModal(row,$event)' class='fa fa-lg fa-eye'></span>";
+    vm.viewTemplate = "<span data-toggle='tootltip' title='Open' ng-click='grid.appScope.patDetail.fnOpenPatientModal(row,$event)' style='color: blue' class='fa fa-lg fa-eye'></span>";
     vm.No = '<span>{{grid.renderContainers.body.visibleRowCache.indexOf(row) + 1}}</span>';
 
     vm.gridOptions = {

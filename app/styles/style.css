@@ -162,3 +162,7 @@ fieldset{
 .form-submit-bg{
   background-color: rgba(0,0,0,0.7);
 }
+.grid-position{
+  width: 95%;
+  margin:0 auto;
+}

@@ -1,12 +1,21 @@
 <div ng-init="patDetail.initPatients()">
 
   <div>
-    <div ng-if="!patDetail.isAdmin()">
-      <button class="btn btn-primary m-b-10 m-r-15" title="Add Patient"
+    <div class="row" ng-if="!patDetail.isAdmin()">
+      <button class="btn btn-primary m-b-10 m-r-50" title="Add Patient"
               style="float:right " ng-click="patDetail.fnAddPatient()"><i
-        class="fa fa-lg fa-plus-circle"></i></button>
+        class="fa fa-lg fa-plus-circle" /> </button>
     </div>
-    <div ng-if="patDetail.isAdmin()" ui-grid="patDetail.gridOptions" ui-grid-pagination></div>
+    <div class="row" ng-if="patDetail.patientData && patDetail.patientData.length <= 0"
+        class="text-center">
+      <h2>--- No patient data to display ---</h2>
+    </div>
+    <div ng-if="patDetail.patientData && patDetail.patientData.length > 0"
+         ui-grid="patDetail.gridOptions"
+         ng-style="patDetail.patientData.length < 7 ? fnReturnGridHeight(patDetail.patientData.length,40,true,true):{height:'412px'}"
+         class="grid-position"
+         ui-grid-pagination>
+    </div>
     <!-- Modal -->
     <div id="patientModal" class="modal fade" role="dialog">
       <div class="modal-dialog " style="width: 100%">

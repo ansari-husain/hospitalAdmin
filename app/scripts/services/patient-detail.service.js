@@ -6,9 +6,9 @@ angular.module('hospitaladminApp')
 
     var locationService = {};
 
-    locationService.fetchPatients = function () {
+    locationService.fetchPatients = function (hos_id) {
       var defer = $q.defer();
-      $http.get(base_url1 + 'get_patients')
+      $http.get(base_url1 + 'get_patients' + (hos_id ? '&hos_id='+hos_id:''))
         .then(function (res) {
           defer.resolve(res);
         }, function (err) {
