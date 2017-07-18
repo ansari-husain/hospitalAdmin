@@ -26,6 +26,8 @@ angular
   .constant('base_url1', 'http://www.jaliyaninfotech.com/hospital/hospital_service1.php?')
   .constant('base_url2', 'http://www.jaliyaninfotech.com/hospital/hospital_service2.php?')
   .constant('cookieName', 'hospitalAdmin')
+  .config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false); }])
   .config(function ($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/login');
     $httpProvider.interceptors.push('authInterceptor');
@@ -86,6 +88,13 @@ angular
         templateUrl: 'views/patient-detail.html',
         controller: 'PatientDetailCtrl',
         controllerAs: 'patDetail',
+        authenticate: true
+      })
+      .state('main.form-f', {
+        url: 'form-f',
+        templateUrl: 'views/form-f.html',
+        controller: 'formFController',
+        controllerAs: 'ff',
         authenticate: true
       });
     //$locationProvider.html5Mode({

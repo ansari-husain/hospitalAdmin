@@ -22,6 +22,7 @@
           <li ng-if="main.isLoggedIn()"><a ui-sref="main.doctors" ng-click="main.fnCheckStatus($event.toElement)">Doctor</a></li>
           <li ng-if="main.isLoggedIn()" class="active"><a ui-sref="main.patient-data" ng-click="main.fnCheckStatus($event.toElement)">Patient</a></li>
           <li ng-if="main.isLoggedIn()"><a ui-sref="main.new-birth" ng-click="main.fnCheckStatus($event.toElement)">New Birth</a></li>
+          <li ng-if="main.isAdmin()"><a ui-sref="main.form-f" ng-click="main.fnCheckStatus($event.toElement)">Form F</a></li>
           <li ng-if="main.isLoggedIn() && !main.isAdmin()"><a ui-sref="main.hospital-profile" ng-click="main.fnCheckStatus($event.toElement)">Profile</a></li>
           <li ng-if="main.isAdmin()"><a ui-sref="main.update-location" ng-click="main.fnCheckStatus($event.toElement)">Update Location</a></li>
 

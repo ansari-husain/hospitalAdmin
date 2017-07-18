@@ -1,0 +1,50 @@
+<div>
+  <div class="panel panel-default login-panel">
+    <div class="panel-heading text-center" style="background-color: #7986bc; color: white "><h4>Form F</h4></div>
+
+
+    <div class="panel-body">
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Patient ID </span>
+        <input class="form-control" ng-model="ff.patient.patientId">
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Reffered By ID </span>
+        <input class="form-control" ng-model="ff.patient.refferedBy">
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Self Reffered By </span>
+        <input type="radio" name="selfReffered" value="yes" class="m-l-20" ng-model="ff.patient.selfReffered"> Yes
+        <input type="radio" name="selfReffered" class="m-l-10" value="no" ng-model="ff.patient.selfReffered"> No
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> USG Done By</span>
+        <input class="form-control" ng-model="ff.patient.usgDone">
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Indication for USG</span>
+        <select class="form-control">
+          <option value=""></option>
+        </select>
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Indication Of Termination </span>
+        <select class="form-control">
+          <option value=""></option>
+        </select>
+      </div>
+      <div class="input-group m-b-10">
+        <span class="input-group-addon"> Result </span>
+        <input class="form-control" ng-model="ff.patient.result">
+      </div>
+
+      <div style="float: right">
+        <button class="btn btn-primary" ng-click="ff.getDetail()">Save</button>
+        <button class="btn btn-default">Print</button>
+        <button class="btn btn-default">Form G</button>
+      </div>
+    </div>
+
+
+  </div>
+</div>
