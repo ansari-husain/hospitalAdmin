@@ -282,7 +282,7 @@
                 <div class="row m-t-10">
                 <div class="col-sm-3">
                   <label>Mode Of Pregnancy</label>
-                  <select class="form-control">
+                  <select class="form-control" ng-model="patDetail.patientDetail.modeOfPregnancy">
                     <option disabled selected>Select Mode Of Pregnancy</option>
                     <option ng-repeat="mop in patDetail.mopArrayPatient" ng-value="mop">{{mop}}</option>
                   </select>
