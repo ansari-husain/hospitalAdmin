@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'ui.router',
     'ui.grid',
-    'ui.grid.pagination'
+    'ui.grid.pagination',
+    'toastr'
   ])
   .constant('base_url', 'http://www.jaliyaninfotech.com/hospital/hospital_service.php?')
   .constant('base_url1', 'http://www.jaliyaninfotech.com/hospital/hospital_service1.php?')
@@ -114,7 +115,19 @@ angular
     //  });
 
   })
-  .factory('authInterceptor', function ($rootScope, $q, $cookies, $location, cookieName) {
+  .config( function(toastrConfig){
+    angular.extend(toastrConfig, {
+      autoDismiss: false,
+      containerId: 'toast-container',
+      maxOpened: 0,
+      newestOnTop: true,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+      preventOpenDuplicates: false,
+      target: 'body'
+    });
+  })
+.factory('authInterceptor', function ($rootScope, $q, $cookies, $location, cookieName) {
     return {
       // Add authorization token to headers
       request: function (config) {
