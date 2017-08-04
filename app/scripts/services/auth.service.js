@@ -15,6 +15,7 @@ angular.module('hospitaladminApp')
           .then(function (res) {
             if (res.data.userName) {
               currentUser = res.data.userName[0];
+              //console.log('welcome, '+JSON.stringify(res.data.userName[0]));
               $cookies.put(cookieName, JSON.stringify(res.data.userName[0]));
             }
             defer.resolve(res)
