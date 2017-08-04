@@ -57,8 +57,7 @@
 
         <div class="input-group m-b-10">
           <span class="input-group-addon theme-accent"><i class="fa fa-lg fa-hospital-o"></i></span>
-          <select ng-model="birthReg.newBirth.disease"
-                  class="form-control" ng-options="disease for disease in birthReg.diseases">
+          <select ng-model="birthReg.newBirth.disease" class="form-control" ng-options="disease for disease in birthReg.diseases">
           </select>
         </div>
 
@@ -212,28 +211,33 @@
                 </select>
               </label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <label class="text-center width-100p"><span class="primary-color m-r-5">B.</span><span>Address</span>
                 <input type="text" class="form-control" ng-model="birthReg.patient.address"/>
+              </label>
+            </div>
+            <div class="col-sm-2">
+              <label class="text-center width-100p"><span class="primary-color m-r-5">C.</span><span>Landmark</span>
+                <input type="text" class="form-control" ng-model="birthReg.patient.address_landmark"/>
               </label>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-3">
-              <label class="text-center width-100p"><span class="primary-color m-r-5">C.</span><span>State</span>
+              <label class="text-center width-100p"><span class="primary-color m-r-5">D.</span><span>State</span>
                 <select class="form-control" ng-model="birthReg.patient.state"
                         ng-change="birthReg.getCities(birthReg.patient.state)"
                         ng-options="state.state_code as state.state_name for state in birthReg.statesArr"></select>
               </label>
             </div>
             <div class="col-sm-3">
-              <label class="text-center width-100p"><span class="primary-color m-r-5">D.</span><span>District</span>
+              <label class="text-center width-100p"><span class="primary-color m-r-5">E.</span><span>District</span>
                 <input type="text" class="form-control">
 
               </label>
             </div>
             <div class="col-sm-2">
-              <label class="text-center width-100p"><span class="primary-color m-r-5">E.</span><span>Taluka</span>
+              <label class="text-center width-100p"><span class="primary-color m-r-5">F.</span><span>Taluka</span>
                 <input type="text" class="form-control">
 
 
@@ -241,14 +245,14 @@
 
             </div>
             <div class="col-sm-2">
-              <label class="text-center width-100p"><span class="primary-color m-r-5">F.</span><span>Zone</span>
+              <label class="text-center width-100p"><span class="primary-color m-r-5">G.</span><span>Zone</span>
                 <input type="text" class="form-control">
 
 
               </label>
             </div>
             <div class="col-sm-2">
-              <label class="text-center width-100p"><span class="primary-color m-r-5">G.</span><span>Ward</span>
+              <label class="text-center width-100p"><span class="primary-color m-r-5">H.</span><span>Ward</span>
                 <input type="text" class="form-control">
 
 
