@@ -199,14 +199,14 @@ angular.module('hospitaladminApp')
         patientData.pref_time_call =  (patientData.pref_time_call).getHours()+":"+ (patientData.pref_time_call).getMinutes();
       }
       console.log(patientData);
-      /*if(vm.patientDetail.unique_id) {
+      if(vm.patientDetail.unique_id) {
         locationService.updatePatient(patientData)
           .then(function (res) {
 
           }, function (err) {
 
           });
-      }*/
+      }
     };
 
     vm.strToInt = function (val) {
