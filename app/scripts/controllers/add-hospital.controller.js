@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hospitaladminApp')
-  .controller('AddHospitalCtrl', function (DataService,$timeout) {
+  .controller('AddHospitalCtrl', function (DataService,$timeout,uiGridConstants) {
     var vm = this;
 
     vm.getStates = function () {
@@ -28,6 +28,7 @@ angular.module('hospitaladminApp')
       DataService.getHospital()
         .then(function (res) {
           vm.doctorsArray = res.data.data;
+            console.log('doctorsArray ', vm.doctorsArray);
           vm.gridOptions.data = vm.doctorsArray;
         }, function (err) {
 
@@ -88,7 +89,16 @@ angular.module('hospitaladminApp')
         enableFiltering: true,
 
         paginationPageSizes: [10, 25, 50, 75],
+        virtualizationThreshold: 25,
         columnDefs: [
+          {
+            name: 'id',
+            visible: false,
+            sort: {
+              direction: uiGridConstants.ASC,
+              priority: 0
+            }
+          },
           {
             name: 'No',
             cellTemplate: vm.No,
@@ -117,26 +127,26 @@ angular.module('hospitaladminApp')
             headerCellClass: 'text-center',
             cellClass: 'text-center',
             field: 'reg_number',
-            minWidth: 80
+            minWidth: 110
           },
           {
             name: 'City',
             headerCellClass: 'text-center',
             field: 'city',
-            minWidth: 80
+            width: 120
           },
           {
             name: 'State',
             headerCellClass: 'text-center',
             field: 'state',
-            minWidth: 80
+            width: 120
           },
           {
             name: 'Phone',
             headerCellClass: 'text-center',
             enableSorting: true,
             field: 'phone_number',
-            width: 100
+            width: 110
           },
           {
             name: 'E-mail',
@@ -150,7 +160,7 @@ angular.module('hospitaladminApp')
             cellTemplate: vm.action,
             cellClass: 'text-center',
             //visible: !vm.isAdmin(),
-            minWidth: 100
+            width: 80
           }
 
         ],
