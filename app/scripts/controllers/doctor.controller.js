@@ -141,7 +141,6 @@ angular.module('hospitaladminApp')
           headerCellClass: 'text-center',
           cellTemplate: vm.action,
           cellClass: 'text-center',
-          visible: !vm.isAdmin(),
           minWidth: 100
         }
 
