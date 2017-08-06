@@ -158,28 +158,37 @@ angular.module('hospitaladminApp')
           cellClass: 'text-uppercase',
           enableSorting: true,
           field: 'p_id',
+          width: 200
+        },
+        {
+          name: 'Hospital Id',
+          headerCellClass: 'text-center',
+          cellClass: 'text-uppercase',
+          enableSorting: true,
+          field: 'hos_id',
+          width: 200
+        },
+        {
+          name: 'Hospital Name',
+          headerCellClass: 'text-center',
+          cellClass: 'text-uppercase',
+          enableSorting: true,
+          field: 'hos_name',
           minWidth: 100
         },
         {
-        name: 'Birth Type',
+        name: 'DOB',
         headerCellClass:'text-center',
         enableSorting:true,
-        field:'birth_type',
-        minWidth:100
-        },
-        {
-          name: 'Mode of Delivery',
-          headerCellClass:'text-center',
-          enableSorting:true,
-          field:'mode_of_delivery',
-          minWidth:100
+        field:'date',
+        width:200
         },
         {
           name: 'Gender',
           headerCellClass:'text-center',
           enableSorting:true,
           field:'gender',
-          minWidth:100
+          width:200
         },
         {
           name:'Action',
