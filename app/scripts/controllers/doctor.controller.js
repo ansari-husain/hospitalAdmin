@@ -55,7 +55,13 @@ angular.module('hospitaladminApp')
       vm.doctor.flag = 'delete';
       DoctorService.doctorOperation(vm.doctor)
         .then(function (res) {
-          if (!vm.isAdmin()) {
+          /*if (!vm.isAdmin()) {
+            vm.getAllDoctors(vm.currentUser.id);
+          }*/
+          if (vm.currentUser.username === 'Admin') {
+            vm.getAllDoctors();
+          }
+          else {
             vm.getAllDoctors(vm.currentUser.id);
           }
         }, function (err) {
@@ -66,7 +72,13 @@ angular.module('hospitaladminApp')
       vm.doctor.hos_id = vm.currentUser.id;
       DoctorService.doctorOperation(vm.doctor)
         .then(function (res) {
-          if (!vm.isAdmin()) {
+          /*if (!vm.isAdmin()) {
+            vm.getAllDoctors(vm.currentUser.id);
+          }*/
+          if (vm.currentUser.username === 'Admin') {
+            vm.getAllDoctors();
+          }
+          else {
             vm.getAllDoctors(vm.currentUser.id);
           }
         }, function (err) {
@@ -77,7 +89,7 @@ angular.module('hospitaladminApp')
     //vm.viewTemplate = "<span data-toggle='tootltip' title='Open' ng-click='grid.appScope.patDetail.fnOpenPatientModal(row,$event)' class='fa fa-lg fa-eye'></span>";
     vm.No = '<span>{{grid.renderContainers.body.visibleRowCache.indexOf(row) + 1}}</span>';
     vm.action = '<span class="fa fa-lg fa-pencil mouseHoverPointer" title="Edit" style="color:navy" ng-click="grid.appScope.doctor.fnEditDoctor(row,$event)"></span> | ' +
-      '<span class="fa fa-lg fa-trash mouseHoverPointer" title="Delete" style="color:red" ng-click="grid.appScope.doctor.fnDeleteDoctor(row,$event)"></span>'
+      '<span class="fa fa-lg fa-trash mouseHoverPointer" title="Delete" style="color:red" ng-click="grid.appScope.doctor.fnDeleteDoctor(row,$event)"></span>';
 
     vm.gridOptions = {
       enableSorting: false,
