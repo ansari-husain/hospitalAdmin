@@ -202,7 +202,7 @@ angular.module('hospitaladminApp')
       if(vm.patientDetail.unique_id) {
         locationService.updatePatient(patientData)
           .then(function (res) {
-
+            vm.getAllPatient();
           }, function (err) {
 
           });
