@@ -23,9 +23,9 @@ angular
     'ui.grid.pagination',
     'toastr'
   ])
-  .constant('base_url', 'http://www.jaliyaninfotech.com/hospital/hospital_service.php?')
-  .constant('base_url1', 'http://www.jaliyaninfotech.com/hospital/hospital_service1.php?')
-  .constant('base_url2', 'http://www.jaliyaninfotech.com/hospital/hospital_service2.php?')
+  .constant('base_url', 'http://www.kotlintpoint.com/hospital/hospital_service.php?')
+  .constant('base_url1', 'http://www.kotlintpoint.com/hospital/hospital_service1.php?')
+  .constant('base_url2', 'http://www.kotlintpoint.com/hospital/hospital_service2.php?')
   .constant('cookieName', 'hospitalAdmin')
   .config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false); }])
